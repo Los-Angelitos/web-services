@@ -1,6 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
+using SweetManagerIotWebService.API.Commerce.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.Commerce.Domain.Model.Entities;
+using SweetManagerIotWebService.API.Communication.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.IAM.Domain.Model.Entities;
+using SweetManagerIotWebService.API.Inventory.Domain.Model.Entities;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.Reservations.Domain.Model.Entities;
 
 namespace SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -8,6 +16,13 @@ public partial class SweetManagerContext : DbContext
 {
     public SweetManagerContext()
     {
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder builder)
+    {
+        base.OnConfiguring(builder);
+        // Enable Audit Fields Interceptors
+        builder.AddCreatedUpdatedInterceptor();
     }
 
     public SweetManagerContext(DbContextOptions<SweetManagerContext> options)
@@ -54,10 +69,6 @@ public partial class SweetManagerContext : DbContext
     public virtual DbSet<SupplyRequest> SupplyRequests { get; set; }
 
     public virtual DbSet<TypeRoom> TypeRooms { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("server=localhost;database=sweet-manager;user=root;password=password;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
