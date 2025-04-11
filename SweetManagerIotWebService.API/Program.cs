@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using MySql.Data.MySqlClient;
+using SweetManagerIotWebService.API.Shared.Domain.Repositories;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Configuration;
+using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Repositories;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -124,6 +126,9 @@ builder.Services.AddHttpContextAccessor();
 // Organizational Management Bounded context
 
 
+
+// Shared Bounded context
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 #endregion
 
