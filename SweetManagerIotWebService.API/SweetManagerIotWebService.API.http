@@ -1,0 +1,6 @@
+@SweetManagerIotWebService.API_HostAddress = http://localhost:5116
+
+GET {{SweetManagerIotWebService.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
