@@ -1,3 +1,3 @@
 ﻿namespace SweetManagerIotWebService.API.Commerce.Domain.Model.Queries;
 
-public record GetPaymentOwnerByOwnerIdQuery();
+public record GetPaymentOwnerByOwnerIdQuery(int OwnerId);
