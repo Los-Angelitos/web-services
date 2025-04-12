@@ -1,5 +1,4 @@
-﻿using SweetManagerIotWebService.API.IAM.Domain.Model.Commands.Authentication;
-using SweetManagerIotWebService.API.IAM.Domain.Model.Commands.Credentials;
+﻿using SweetManagerIotWebService.API.IAM.Domain.Model.Commands.Credentials;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Credentials;
 
 namespace SweetManagerIotWebService.API.IAM.Domain.Services.CommandServices.Credentials
