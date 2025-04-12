@@ -81,10 +81,6 @@ public partial class SweetManagerContext : DbContext
             entity.HasIndex(e => e.RoleId, "role_id");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("timestamp")
-                .HasColumnName("created_at");
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
                 .HasColumnName("email");
@@ -98,11 +94,6 @@ public partial class SweetManagerContext : DbContext
             entity.Property(e => e.Surname)
                 .HasMaxLength(100)
                 .HasColumnName("surname");
-            entity.Property(e => e.UpdatedAt)
-                .ValueGeneratedOnAddOrUpdate()
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("timestamp")
-                .HasColumnName("updated_at");
 
             entity.HasOne(d => d.Role).WithMany(p => p.Admins)
                 .HasForeignKey(d => d.RoleId)
@@ -327,10 +318,6 @@ public partial class SweetManagerContext : DbContext
             entity.HasIndex(e => e.RoleId, "role_id");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("timestamp")
-                .HasColumnName("created_at");
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
                 .HasColumnName("email");
@@ -348,11 +335,6 @@ public partial class SweetManagerContext : DbContext
             entity.Property(e => e.Surname)
                 .HasMaxLength(50)
                 .HasColumnName("surname");
-            entity.Property(e => e.UpdatedAt)
-                .ValueGeneratedOnAddOrUpdate()
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("timestamp")
-                .HasColumnName("updated_at");
 
             entity.HasOne(d => d.Role).WithMany(p => p.Owners)
                 .HasForeignKey(d => d.RoleId)
