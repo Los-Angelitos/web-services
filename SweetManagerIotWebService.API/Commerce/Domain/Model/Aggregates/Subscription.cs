@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SweetManagerIotWebService.API.Commerce.Domain.Model.Entities;
+using SweetManagerIotWebService.API.Commerce.Domain.Model.ValueObjects;
 
 namespace SweetManagerIotWebService.API.Commerce.Domain.Model.Aggregates;
 
@@ -8,7 +9,7 @@ public partial class Subscription
 {
     public int Id { get; set; }
 
-    public string? Name { get; set; }
+    public ESubscriptionTypes Name { get; set; }
 
     public string? Content { get; set; }
 

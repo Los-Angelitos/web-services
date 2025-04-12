@@ -35,7 +35,6 @@
 
   <ItemGroup>
     <Folder Include="Commerce\Domain\Model\Commands\" />
-    <Folder Include="Commerce\Domain\Model\Queries\" />
   </ItemGroup>
 
 </Project>
