@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using SweetManagerIotWebService.API.Commerce.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Commerce.Domain.Model.Entities;
-using SweetManagerIotWebService.API.IAM.Domain.Model.Entities;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Credentials;
+using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Roles;
 
 namespace SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
 
