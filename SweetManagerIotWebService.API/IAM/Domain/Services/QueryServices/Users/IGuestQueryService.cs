@@ -5,7 +5,7 @@ namespace SweetManagerIotWebService.API.IAM.Domain.Services.QueryServices.Users
 {
     public interface IGuestQueryService
     {
-        Task<IEnumerable<Guest>> Handle(GetAllUsersQuery query);
+        Task<IEnumerable<Guest>> Handle(GetAllFilteredUsersQuery query);
 
         Task<IEnumerable<Guest>> Handle(GetAllUsersFromOrganizationQuery query);
 
