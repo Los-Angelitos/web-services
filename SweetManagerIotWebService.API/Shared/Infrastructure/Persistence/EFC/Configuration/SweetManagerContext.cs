@@ -5,6 +5,7 @@ using SweetManagerIotWebService.API.Commerce.Domain.Model.Entities;
 using SweetManagerIotWebService.API.Communication.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities;
+using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Credentials;
 using SweetManagerIotWebService.API.Inventory.Domain.Model.Entities;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
@@ -206,6 +207,9 @@ public partial class SweetManagerContext : DbContext
             entity.ToTable("guests");
 
             entity.Property(e => e.Id).HasColumnName("id");
+
+            entity.HasIndex(e => e.RoleId, "role_id");
+
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .HasColumnName("email");
@@ -222,6 +226,10 @@ public partial class SweetManagerContext : DbContext
             entity.Property(e => e.Surname)
                 .HasMaxLength(50)
                 .HasColumnName("surname");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.Guests)
+                .HasForeignKey(d => d.RoleId)
+                .HasConstraintName("guests_ibfk_1");
         });
 
         modelBuilder.Entity<GuestCredential>(entity =>

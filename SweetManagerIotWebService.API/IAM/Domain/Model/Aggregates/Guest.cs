@@ -20,9 +20,13 @@ public partial class Guest
 
     public string? State { get; set; }
 
+    public int? RoleId { get; set; }
+
     public virtual GuestCredential? GuestCredential { get; set; }
 
     public virtual ICollection<GuestPreference> GuestPreferences { get; set; } = new List<GuestPreference>();
 
     public virtual ICollection<PaymentCustomer> PaymentCustomers { get; set; } = new List<PaymentCustomer>();
+
+    public virtual Role? Role { get; set; }
 }
