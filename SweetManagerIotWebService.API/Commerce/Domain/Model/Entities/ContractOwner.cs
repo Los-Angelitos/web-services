@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SweetManagerIotWebService.API.Commerce.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.Commerce.Domain.Model.ValueObjects;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
 
 namespace SweetManagerIotWebService.API.Commerce.Domain.Model.Entities;
@@ -17,7 +18,7 @@ public partial class ContractOwner
 
     public int? SubscriptionId { get; set; }
 
-    public string? Status { get; set; }
+    public EStates Status { get; set; }
 
     public virtual Owner? Owner { get; set; }
 

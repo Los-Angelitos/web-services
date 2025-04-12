@@ -15,7 +15,7 @@ public partial class Subscription
 
     public decimal? Price { get; set; }
 
-    public string? Status { get; set; }
+    public EStates Status { get; set; }
 
     public virtual ICollection<ContractOwner> ContractOwners { get; set; } = new List<ContractOwner>();
 }
