@@ -34,9 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commerce\Infrastructure\" />
-    <Folder Include="Commerce\Application\" />
-    <Folder Include="Commerce\Interfaces\" />
+    <Folder Include="Commerce\Domain\Model\Commands\" />
+    <Folder Include="Commerce\Domain\Model\Queries\" />
   </ItemGroup>
 
 </Project>
