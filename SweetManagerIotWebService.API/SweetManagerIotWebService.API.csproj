@@ -36,7 +36,6 @@
   <ItemGroup>
     <Folder Include="Commerce\Application\Internal\OutboundServices\ACL\" />
     <Folder Include="Commerce\Application\Internal\QueryServices\" />
-    <Folder Include="Commerce\Domain\Services\" />
     <Folder Include="Commerce\Infrastructure\" />
     <Folder Include="Commerce\Interfaces\" />
   </ItemGroup>
