@@ -7,5 +7,5 @@ public interface IPaymentCustomerQueryService
 {
     Task<IEnumerable<PaymentCustomer>> Handle(GetAllPaymentCustomersQuery query);
     Task<PaymentCustomer?> Handle(GetPaymentCustomerByIdQuery query);
-    Task<IEnumerable<PaymentCustomer>> Handle(GetPaymentCustomerByCustomerIdQuery query);
+    Task<IEnumerable<PaymentCustomer>> Handle(GetAllPaymentCustomersByCustomerIdQuery query);
 }

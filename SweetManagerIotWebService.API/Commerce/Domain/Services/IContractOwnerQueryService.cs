@@ -7,6 +7,6 @@ public interface IContractOwnerQueryService
 {
     Task<IEnumerable<ContractOwner>> Handle(GetAllContractOwnersQuery query);
     Task<ContractOwner?> Handle(GetContractOwnerByIdQuery query);
-    Task<IEnumerable<ContractOwner>> Handle(GetContractOwnerByOwnerIdQuery query);
-    Task<IEnumerable<ContractOwner>> Handle(GetContractOwnerBySubscriptionIdQuery query);
+    Task<IEnumerable<ContractOwner>> Handle(GetAllContractOwnersByOwnerIdQuery query);
+    Task<IEnumerable<ContractOwner>> Handle(GetAllContractOwnersBySubscriptionIdQuery query);
 }

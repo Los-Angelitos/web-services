@@ -7,5 +7,5 @@ public interface IPaymentOwnerQueryService
 {
     Task<IEnumerable<PaymentOwner>> Handle(GetAllPaymentOwnersQuery query);
     Task<PaymentOwner?> Handle(GetPaymentOwnerByIdQuery query);
-    Task<IEnumerable<PaymentOwner>> Handle(GetPaymentOwnerByOwnerIdQuery query);
+    Task<IEnumerable<PaymentOwner>> Handle(GetAllPaymentOwnersByOwnerIdQuery query);
 }
