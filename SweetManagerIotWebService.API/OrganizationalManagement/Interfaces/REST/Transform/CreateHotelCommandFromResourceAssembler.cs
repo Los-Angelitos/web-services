@@ -7,6 +7,6 @@ public class CreateHotelCommandFromResourceAssembler
 {
     public static CreateHotelCommand ToCommandFromResource(CreateHotelResource resource)
     {
-        return new CreateHotelCommand(resource.OwnerId, resource.Name, resource.Description, resource.Email, resource.Address, resource.Phone, resource.RoomsId);
+        return new CreateHotelCommand(resource.OwnerId, resource.Name, resource.Description, resource.Email, resource.Address, resource.Phone);
     }
 }
