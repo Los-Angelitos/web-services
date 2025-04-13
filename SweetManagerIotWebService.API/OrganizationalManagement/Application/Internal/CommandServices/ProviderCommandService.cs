@@ -31,4 +31,18 @@ public class ProviderCommandService(IProviderRepository providerRepository, IUni
         await unitOfWork.CommitAsync();
         return provider;
     }
+    
+    public async Task<bool> Handle(DeleteProviderCommand command)
+    {
+        var provider = await providerRepository.FindByIdAsync(command.ProviderId);
+        if (provider == null)
+        {
+            throw new Exception($"Provider with ID {command.ProviderId} not found.");
+        }
+
+        provider.DisableProvider();
+        providerRepository.Update(provider);
+        await unitOfWork.CommitAsync();
+        return true;
+    }
 }

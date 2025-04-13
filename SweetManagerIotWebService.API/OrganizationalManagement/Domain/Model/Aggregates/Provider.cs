@@ -43,4 +43,14 @@ public partial class Provider
         Email = command.Email;
         Phone = command.Phone;
     }
+    
+    public void UpdateState(string state)
+    {
+        State = Enum.TryParse<State>(state, true, out var stateEnum) ? stateEnum : throw new ArgumentException("Invalid state, use 'Active' or 'Inactive'");
+    }
+
+    public void DisableProvider()
+    {
+        State = ValueObjects.State.Inactive;
+    }
 }

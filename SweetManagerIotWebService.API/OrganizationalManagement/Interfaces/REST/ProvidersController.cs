@@ -1,5 +1,6 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Commands;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Queries;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Services;
 using SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST.Resources;
@@ -75,6 +76,23 @@ public class ProvidersController(IProviderCommandService providerCommandService,
             if (provider is null) return BadRequest();
             var providerResource = ProviderResourceFromEntityAssembler.ToResourceFromEntity(provider);
             return Ok(providerResource);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+    
+    [HttpDelete("{providerId:int}")]
+    public async Task<IActionResult> DeleteProviderForClient(int providerId)
+    {
+        try
+        {
+            var deleteProviderCommand = new DeleteProviderCommand(providerId);
+            var provider = await providerCommandService.Handle(deleteProviderCommand);
+            
+            if (!provider) return BadRequest();
+            return NoContent();
         }
         catch (Exception ex)
         {

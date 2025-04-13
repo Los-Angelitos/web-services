@@ -7,4 +7,5 @@ public interface IProviderCommandService
 {
     Task<Provider?> Handle(CreateProviderCommand command);
     Task<Provider?> Handle(UpdateProviderCommand command);
+    Task<bool> Handle(DeleteProviderCommand command);
 }
