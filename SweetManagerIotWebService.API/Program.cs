@@ -134,6 +134,7 @@ builder.Services.AddScoped<IHotelCommandService, HotelCommandService>();
 builder.Services.AddScoped<IHotelQueryService, HotelQueryService>();
 builder.Services.AddScoped<IProviderCommandService, ProviderCommandService>();
 builder.Services.AddScoped<IProviderQueryService, ProviderQueryService>();
+builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 
 
 // Shared Bounded context
