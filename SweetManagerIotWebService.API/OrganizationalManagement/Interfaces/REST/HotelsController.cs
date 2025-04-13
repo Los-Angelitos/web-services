@@ -38,7 +38,7 @@ public class HotelsController(IHotelCommandService hotelCommandService, IHotelQu
         }
     }
 
-    [HttpGet]
+    [HttpGet("{hotelId:int}")]
     public async Task<IActionResult> GetHotelById(int hotelId)
     {
         try
@@ -46,12 +46,12 @@ public class HotelsController(IHotelCommandService hotelCommandService, IHotelQu
             var getHotelByIdQuery = new GetHotelByIdQuery(hotelId);
             var hotel = await hotelQueryService.Handle(getHotelByIdQuery);
         
-            if (hotel == null) return NotFound();
+            if (hotel == null) return NotFound(new { message = "The hotel was not found." });
             var hotelResource = HotelResourceFromEntityAssembler.ToResourceFromEntity(hotel);
             return Ok(hotelResource);
         }catch(Exception ex)
         {
-            return BadRequest(new { message = ex.Message });;
+            return BadRequest(new { message = ex.Message });
         }
     }
 }
