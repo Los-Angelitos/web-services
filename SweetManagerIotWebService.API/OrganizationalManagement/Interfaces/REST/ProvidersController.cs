@@ -10,7 +10,7 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST
 [ApiController]
 [Route("api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
-public class ProvidersController(IProviderCommandService providerCommandService) : ControllerBase
+public class ProvidersController(IProviderCommandService providerCommandService, IProviderQueryService providerQueryService) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> AddNewProvider(CreateProviderResource resource)
@@ -27,5 +27,24 @@ public class ProvidersController(IProviderCommandService providerCommandService)
         {
             return BadRequest(new { message = ex.Message });
         }
+    }
+    
+    [HttpGet("{providerId:int}")]
+    public async Task<IActionResult> GetProviderById(int providerId)
+    {
+        try
+        {
+            var getProviderByIdQuery = new GetProviderByIdQuery(providerId);
+            var provider = await providerQueryService.Handle(getProviderByIdQuery);
+            
+            if (provider == null) return NotFound();
+            var providerResource = ProviderResourceFromEntityAssembler.ToResourceFromEntity(provider);
+            return Ok(providerResource);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+        
     }
 }
