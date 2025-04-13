@@ -54,4 +54,19 @@ public class HotelsController(IHotelCommandService hotelCommandService, IHotelQu
             return BadRequest(new { message = ex.Message });
         }
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetAllHotels()
+    {
+        try
+        {
+            var getAllHotelsQuery = new GetAllHotelsQuery();
+            var hotels = await hotelQueryService.Handle(getAllHotelsQuery);
+            var hotelResources = hotels.Select(HotelResourceFromEntityAssembler.ToResourceFromEntity);
+            return Ok(hotelResources);
+        }catch(Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
 }

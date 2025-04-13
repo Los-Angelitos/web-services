@@ -5,4 +5,5 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Domain.Reposito
 public interface IHotelRepository : IBaseRepository<Hotel>
 {
     Task<Hotel?> FindByNameAndEmailAsync(string name, string email);
+    Task<IEnumerable<Hotel>> GetAllHotelsAsync();
 }

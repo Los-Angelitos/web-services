@@ -13,4 +13,10 @@ public class HotelRepository(SweetManagerContext context) : BaseRepository<Hotel
             .Where(h => h.Name == name && h.Email == email)
             .FirstOrDefaultAsync();
     }
+    
+    public async Task<IEnumerable<Hotel>> GetAllHotelsAsync()
+    {
+        return await context.Set<Hotel>()
+            .ToListAsync();
+    }
 }

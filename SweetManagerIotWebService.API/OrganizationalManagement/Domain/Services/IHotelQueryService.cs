@@ -5,4 +5,5 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Domain.Services
 public interface IHotelQueryService
 {
     Task<Hotel?> Handle(GetHotelByIdQuery query);
+    Task<IEnumerable<Hotel>> Handle(GetAllHotelsQuery query);
 }

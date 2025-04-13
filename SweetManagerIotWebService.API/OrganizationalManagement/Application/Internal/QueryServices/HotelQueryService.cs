@@ -10,4 +10,9 @@ public class HotelQueryService(IHotelRepository hotelRepository) : IHotelQuerySe
     {
         return await hotelRepository.FindByIdAsync(query.HotelId);
     }
+    
+    public async Task<IEnumerable<Hotel>> Handle(GetAllHotelsQuery query)
+    {
+        return await hotelRepository.GetAllHotelsAsync();
+    }
 }
