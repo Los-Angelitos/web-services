@@ -8,6 +8,13 @@ using SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST.Tra
 
 namespace SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST;
 
+/**
+ * This controller is for managing providers.
+ * It allows you to create, read, update, and delete providers.
+ *
+ * Author: Arian Rodriguez
+ */
+
 [ApiController]
 [Route("api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
