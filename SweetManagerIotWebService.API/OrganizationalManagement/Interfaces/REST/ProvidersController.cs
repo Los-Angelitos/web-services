@@ -63,4 +63,22 @@ public class ProvidersController(IProviderCommandService providerCommandService,
             return BadRequest(new { message = ex.Message });
         }
     }
+    
+    [HttpPut("{providerId:int}")]
+    public async Task<IActionResult> UpdateProvider(int providerId, UpdateProviderResource resource)
+    {
+        try
+        {
+            var updateProviderCommand = UpdateProviderCommandFromResourceAssembler.ToCommandFromResource(providerId, resource);
+            var provider = await providerCommandService.Handle(updateProviderCommand);
+            
+            if (provider is null) return BadRequest();
+            var providerResource = ProviderResourceFromEntityAssembler.ToResourceFromEntity(provider);
+            return Ok(providerResource);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
 }

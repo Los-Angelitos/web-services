@@ -17,4 +17,18 @@ public class ProviderCommandService(IProviderRepository providerRepository, IUni
         return provider;
         
     }
+    
+    public async Task<Provider?> Handle(UpdateProviderCommand command)
+    {
+        var provider = await providerRepository.FindByIdAsync(command.Id);
+        if (provider == null)
+        {
+            throw new Exception($"Provider with ID {command.Id} not found.");
+        }
+
+        provider.UpdateData(command);
+        providerRepository.Update(provider);
+        await unitOfWork.CommitAsync();
+        return provider;
+    }
 }

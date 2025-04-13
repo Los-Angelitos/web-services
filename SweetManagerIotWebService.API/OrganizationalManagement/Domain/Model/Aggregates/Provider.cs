@@ -36,4 +36,11 @@ public partial class Provider
         Phone = command.Phone;
         State = Enum.TryParse<State>(command.State, true, out var stateEnum) ? stateEnum : throw new ArgumentException("Invalid state, use 'Active' or 'Inactive'");
     }
+    
+    public void UpdateData(UpdateProviderCommand command)
+    {
+        Name = command.Name;
+        Email = command.Email;
+        Phone = command.Phone;
+    }
 }
