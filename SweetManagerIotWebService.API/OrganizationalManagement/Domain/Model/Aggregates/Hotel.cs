@@ -30,7 +30,7 @@ public partial class Hotel
 
     public Hotel()
     {
-        
+        // asd
     }
     
     public Hotel(string name, string description, string email, string address, string phone)
