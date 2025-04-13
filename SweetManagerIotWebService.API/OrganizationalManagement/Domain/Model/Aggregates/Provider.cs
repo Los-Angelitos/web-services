@@ -53,4 +53,9 @@ public partial class Provider
     {
         State = ValueObjects.State.Inactive;
     }
+    
+    public bool IsActive()
+    {
+        return State == ValueObjects.State.Active;
+    }
 }

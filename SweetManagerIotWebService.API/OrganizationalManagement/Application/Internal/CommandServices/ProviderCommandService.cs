@@ -40,6 +40,11 @@ public class ProviderCommandService(IProviderRepository providerRepository, IUni
             throw new Exception($"Provider with ID {command.ProviderId} not found.");
         }
 
+        if(!provider.IsActive()) 
+        {
+            throw new Exception($"Provider with ID {command.ProviderId} is already inactive.");
+        }
+        
         provider.DisableProvider();
         providerRepository.Update(provider);
         await unitOfWork.CommitAsync();
