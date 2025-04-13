@@ -51,7 +51,7 @@ public class HotelsController(IHotelCommandService hotelCommandService, IHotelQu
             return Ok(hotelResource);
         }catch(Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });;
         }
     }
 }
