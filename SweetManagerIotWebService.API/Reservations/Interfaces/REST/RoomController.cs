@@ -92,4 +92,13 @@ public class RoomController(IRoomCommandService roomCommandService, IRoomQuerySe
         return Ok(roomResource);
     }
     
+    [HttpGet("get-room-by-booking-availability")]
+    public async Task <IActionResult> RoomByBookingAvailability([FromQuery] DateTime startDate, DateTime finalDate, int hotelId)
+    {
+        var rooms = await roomQueryService.Handle(new GetAllRoomsByBookingAvailabilityInARangeQuery(startDate, finalDate, hotelId));
+
+        var roomResource = rooms.Select(RoomResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(roomResource);
+    }
+    
 }
