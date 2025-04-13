@@ -45,7 +45,7 @@ public class PaymentOwnerController(
     }
     
     [HttpGet("by-owner/{ownerId:int}")]
-    public async Task<IActionResult> GetPaymentOwnerByOwnerId(int ownerId)
+    public async Task<IActionResult> GetPaymentOwnersByOwnerId(int ownerId)
     {
         var getPaymentOwnerByOwnerIdQuery = new GetAllPaymentOwnersByOwnerIdQuery(ownerId);
         var paymentOwners = await paymentOwnerQueryService.Handle(getPaymentOwnerByOwnerIdQuery);

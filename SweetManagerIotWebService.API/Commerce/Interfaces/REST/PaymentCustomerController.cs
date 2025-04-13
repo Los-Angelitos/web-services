@@ -45,7 +45,7 @@ public class PaymentCustomerController(
     }
     
     [HttpGet("by-customer/{customerId:int}")]
-    public async Task<IActionResult> GetPaymentCustomerByCustomerId(int customerId)
+    public async Task<IActionResult> GetPaymentCustomersByCustomerId(int customerId)
     {
         var getPaymentCustomerByCustomerIdQuery = new GetAllPaymentCustomersByCustomerIdQuery(customerId);
         var paymentCustomers = await paymentCustomerQueryService.Handle(getPaymentCustomerByCustomerIdQuery);
