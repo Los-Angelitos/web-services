@@ -5,7 +5,6 @@ namespace SweetManagerIotWebService.API.IAM.Domain.Repositories.Credentials
 {
     public interface IOwnerCredentialRepository : IBaseRepository<OwnerCredential>
     {
-        Task<OwnerCredential> FindById(int id);
 
     }
 }
