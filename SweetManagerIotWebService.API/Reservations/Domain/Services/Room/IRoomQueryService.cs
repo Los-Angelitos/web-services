@@ -11,4 +11,6 @@ public interface IRoomQueryService
     Task<IEnumerable<Model.Aggregates.Room>> Handle(GetRoomsByStateQuery query);
 
     Task<IEnumerable<Model.Aggregates.Room>> Handle(GetRoomsByTypeRoomIdQuery query); 
+    
+    Task<IEnumerable<Model.Aggregates.Room>> Handle(GetAllRoomsByBookingAvailabilityInARangeQuery query);
 }
