@@ -1,5 +1,6 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Queries;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Services;
 using SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST.Resources;
 using SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST.Transform;
