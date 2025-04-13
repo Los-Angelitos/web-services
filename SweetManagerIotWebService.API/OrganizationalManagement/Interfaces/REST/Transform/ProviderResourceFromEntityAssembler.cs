@@ -7,6 +7,6 @@ public class ProviderResourceFromEntityAssembler
 {
     public static ProviderResource ToResourceFromEntity(Provider entity)
     {
-        return new ProviderResource(entity.Id, entity.Name, entity.Email, entity.Phone, entity.State);
+        return new ProviderResource(entity.Id, entity.Name, entity.Email, entity.Phone, entity.State.ToString().ToLower());
     }
 }
