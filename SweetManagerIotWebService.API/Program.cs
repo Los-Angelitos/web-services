@@ -132,6 +132,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IHotelRepository, HotelRepository>();
 builder.Services.AddScoped<IHotelCommandService, HotelCommandService>();
 builder.Services.AddScoped<IHotelQueryService, HotelQueryService>();
+builder.Services.AddScoped<IProviderCommandService, ProviderCommandService>();
+builder.Services.AddScoped<IProviderQueryService, ProviderQueryService>();
 
 
 // Shared Bounded context
