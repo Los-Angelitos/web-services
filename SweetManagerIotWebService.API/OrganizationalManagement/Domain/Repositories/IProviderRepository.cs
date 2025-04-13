@@ -5,5 +5,5 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Domain.Reposito
 
 public interface IProviderRepository : IBaseRepository<Provider>
 {
-    
+    Task<IEnumerable<Provider>> GetAllProvidersAsync();
 }

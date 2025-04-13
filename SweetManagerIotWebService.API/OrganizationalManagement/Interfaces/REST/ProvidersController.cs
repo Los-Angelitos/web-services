@@ -47,4 +47,20 @@ public class ProvidersController(IProviderCommandService providerCommandService,
         }
         
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetAllProviders()
+    {
+        try
+        {
+            var getAllProvidersQuery = new GetAllProvidersQuery();
+            var providers = await providerQueryService.Handle(getAllProvidersQuery);
+            var providerResources = providers.Select(ProviderResourceFromEntityAssembler.ToResourceFromEntity);
+            return Ok(providerResources);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
 }

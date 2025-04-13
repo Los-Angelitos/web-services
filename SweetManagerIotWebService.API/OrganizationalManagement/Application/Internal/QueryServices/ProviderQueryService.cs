@@ -11,4 +11,9 @@ public class ProviderQueryService(IProviderRepository providerRepository) : IPro
     {
         return await providerRepository.FindByIdAsync(query.providerId);
     }
+    
+    public async Task<IEnumerable<Provider>> Handle(GetAllProvidersQuery query)
+    {
+        return await providerRepository.GetAllProvidersAsync();
+    }
 }
