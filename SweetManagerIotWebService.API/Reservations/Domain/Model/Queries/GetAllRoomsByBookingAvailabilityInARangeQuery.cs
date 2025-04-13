@@ -1,3 +1,3 @@
 ﻿namespace SweetManagerIotWebService.API.Reservations.Domain.Model.Queries;
 
-public record GetAllRoomsByBookingAvailabilityInARangeQuery(DateTime Start, DateTime End);
+public record GetAllRoomsByBookingAvailabilityInARangeQuery(DateTime StartDate, DateTime  FinalDate, int HotelId);
