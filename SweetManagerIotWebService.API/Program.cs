@@ -6,6 +6,11 @@ using SweetManagerIotWebService.API.Shared.Infrastructure.Interfaces.ASP.Configu
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Repositories;
 using System.Data;
+using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.CommandServices;
+using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.QueryServices;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Repositories;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Services;
+using SweetManagerIotWebService.API.OrganizationalManagement.Infrastructure.Persistence.EFC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -124,7 +129,9 @@ builder.Services.AddHttpContextAccessor();
 
 
 // Organizational Management Bounded context
-
+builder.Services.AddScoped<IHotelRepository, HotelRepository>();
+builder.Services.AddScoped<IHotelCommandService, HotelCommandService>();
+builder.Services.AddScoped<IHotelQueryService, HotelQueryService>();
 
 
 // Shared Bounded context
