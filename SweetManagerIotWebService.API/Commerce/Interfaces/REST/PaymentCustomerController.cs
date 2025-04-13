@@ -22,7 +22,7 @@ public class PaymentCustomerController(
         var paymentCustomer = await paymentCustomerCommandService.Handle(createPaymentCustomerCommand);
         if (paymentCustomer is null) return BadRequest();
         var paymentCustomerResource = PaymentCustomerResourceFromEntityAssembler.ToResourceFromEntity(paymentCustomer);
-        return CreatedAtAction(nameof(GetPaymentCustomerById), new { billId = paymentCustomerResource.Id }, paymentCustomerResource);
+        return CreatedAtAction(nameof(GetPaymentCustomerById), new { paymentCustomerId = paymentCustomerResource.Id }, paymentCustomerResource);
     }
     
     [HttpGet]
