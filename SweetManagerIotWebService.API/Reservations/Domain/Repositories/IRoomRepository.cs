@@ -12,7 +12,7 @@ public interface IRoomRepository : IBaseRepository<Room>
 
     Task<IEnumerable<Room>> FindByTypeRoomIdAsync(int typeroomid);
     
-    Task<IEnumerable<Room>> FindByRange(DateTime start, DateTime end);
+    Task<IEnumerable<Room>> FindByRange(DateTime start, DateTime end, int HotelId);
 
     Task<bool> UpdateRoomStateAsync(int id, string state);
 }
