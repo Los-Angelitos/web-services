@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Mysqlx.Crud;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Commands;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
@@ -57,5 +58,14 @@ public partial class Hotel
             Rooms.Add(new Room(room));
         }
         */
+    }
+    
+    public void UpdateData(UpdateHotelCommand command)
+    {
+        Description = command.Description;
+        Email = command.Email;
+        Address = command.Address;
+        Phone = command.Phone;
+        OwnerId = command.OwnerId;
     }
 }

@@ -27,4 +27,19 @@ public class HotelCommandService(IHotelRepository hotelRepository, IUnitOfWork u
         return hotel;
         
     }
+    
+    public async Task<Hotel?> Handle(UpdateHotelCommand command)
+    {
+        var hotel = await hotelRepository.FindByIdAsync(command.HotelId);
+        if (hotel == null)
+        {
+            Console.WriteLine("Hotel not found.");
+            throw new Exception("No se encontró el hotel. Por favor, verifica los datos e intenta nuevamente.");
+        }
+
+        hotel.UpdateData(command);
+        await hotelRepository.UpdateHotelAsync(hotel);
+        await unitOfWork.CommitAsync();
+        return hotel;
+    }
 }

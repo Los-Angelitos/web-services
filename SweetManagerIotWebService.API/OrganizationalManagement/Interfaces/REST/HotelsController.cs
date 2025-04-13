@@ -69,4 +69,21 @@ public class HotelsController(IHotelCommandService hotelCommandService, IHotelQu
             return BadRequest(new { message = ex.Message });
         }
     }
+    
+    [HttpPut("{hotelId:int}")]
+    public async Task<IActionResult> UpdateHotel(int hotelId, UpdateHotelResource resource)
+    {
+        try
+        {
+            var updateHotelCommand = UpdateHotelCommandFromResourceAssembler.ToCommandFromResource(hotelId, resource);
+            var hotel = await hotelCommandService.Handle(updateHotelCommand);
+        
+            if (hotel == null) return NotFound(new { message = "The hotel was not found." });
+            var hotelResource = HotelResourceFromEntityAssembler.ToResourceFromEntity(hotel);
+            return Ok(hotelResource);
+        }catch(Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
 }
