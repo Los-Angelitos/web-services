@@ -35,7 +35,7 @@
 
   <ItemGroup>
     <Folder Include="Commerce\Application\Internal\OutboundServices\ACL\" />
-    <Folder Include="Commerce\Interfaces\" />
+    <Folder Include="Commerce\Interfaces\REST\Transform\" />
   </ItemGroup>
 
 </Project>
