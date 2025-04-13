@@ -34,7 +34,7 @@ public class HotelsController(IHotelCommandService hotelCommandService, IHotelQu
             return CreatedAtAction(nameof(GetHotelById), new {hotelId = hotelResource.Id}, hotelResource);
         }catch(Exception ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { message = ex.Message });
         }
     }
 

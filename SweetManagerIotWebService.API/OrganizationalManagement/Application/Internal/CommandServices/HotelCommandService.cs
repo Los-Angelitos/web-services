@@ -9,17 +9,22 @@ public class HotelCommandService(IHotelRepository hotelRepository, IUnitOfWork u
 {
     public async Task<Hotel?> Handle(CreateHotelCommand command)
     {
-        var hotel = new Hotel(command);
-        try
+        
+        // checking if the hotel name and email already exists
+        var existingHotel = await hotelRepository.FindByNameAndEmailAsync(command.Name, command.Email);
+        if (existingHotel != null)
         {
-            await hotelRepository.AddAsync(hotel);
-            await unitOfWork.CommitAsync();
-            return hotel;
-        }catch (Exception ex)
-        {
-            Console.WriteLine($"Error creating hotel: {ex.Message}");
-            return null;
+            Console.WriteLine("Hotel with the same name and email already exists.");
+            throw new Exception("Parece que ya existe un hotel con el mismo nombre y correo electrónico. Por favor, verifica los datos e intenta nuevamente.");
         }
+        
+        // checking if the owner id exists - when the ACL for IAM is implemented
+        if(command.OwnerId == 0) throw new Exception("El id del owner de hotel no existe. Por favor, verifica los datos e intenta nuevamente.");
+        
+        var hotel = new Hotel(command);
+        await hotelRepository.AddAsync(hotel);
+        await unitOfWork.CommitAsync();
+        return hotel;
         
     }
 }
