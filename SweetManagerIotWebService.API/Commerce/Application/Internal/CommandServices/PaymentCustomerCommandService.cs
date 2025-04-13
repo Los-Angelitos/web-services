@@ -30,7 +30,7 @@ public class PaymentCustomerCommandService(
         var paymentCustomer = await paymentCustomerRepository.FindByIdAsync(command.Id);
         if (paymentCustomer == null)
         {
-            Console.WriteLine($"Bill with ID {command.Id} not found.");
+            Console.WriteLine($"Payment Customer with ID {command.Id} not found.");
             return null;
         }
 
