@@ -28,8 +28,7 @@ public class RoomCommandService(IRoomRepository roomRepository, IUnitOfWork unit
          return true;
      }
 
-
-
+    
     public async Task<bool> Handle(UpdateRoomStateCommand command)
     {
         try
