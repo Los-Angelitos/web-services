@@ -27,4 +27,11 @@ public class HotelRepository(SweetManagerContext context) : BaseRepository<Hotel
 
         return hotel;
     }
+
+    public async Task<IEnumerable<Hotel>> FindByOwnerIdAsync(int ownerId)
+    {
+        return await Context.Set<Hotel>()
+            .Where(h => h.OwnerId == ownerId)
+            .ToListAsync();
+    }
 }

@@ -15,4 +15,9 @@ public class HotelQueryService(IHotelRepository hotelRepository) : IHotelQuerySe
     {
         return await hotelRepository.GetAllHotelsAsync();
     }
+    
+    public async Task<IEnumerable<Hotel>> Handle(GetHotelByOwnerId query)
+    {
+        return await hotelRepository.FindByOwnerIdAsync(query.OwnerId);
+    }
 }
