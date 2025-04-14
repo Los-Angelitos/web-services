@@ -38,7 +38,7 @@ public class HotelCommandService(IHotelRepository hotelRepository, IUnitOfWork u
         }
 
         hotel.UpdateData(command);
-        await hotelRepository.UpdateHotelAsync(hotel);
+        hotelRepository.Update(hotel);
         await unitOfWork.CommitAsync();
         return hotel;
     }

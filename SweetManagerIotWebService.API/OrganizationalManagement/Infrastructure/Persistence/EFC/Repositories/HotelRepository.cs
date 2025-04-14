@@ -20,14 +20,6 @@ public class HotelRepository(SweetManagerContext context) : BaseRepository<Hotel
             .ToListAsync();
     }
 
-    public async Task<Hotel?> UpdateHotelAsync(Hotel hotel)
-    {
-        Context.Set<Hotel>().Update(hotel);
-        await Context.SaveChangesAsync();
-
-        return hotel;
-    }
-
     public async Task<IEnumerable<Hotel>> FindByOwnerIdAsync(int ownerId)
     {
         return await Context.Set<Hotel>()
