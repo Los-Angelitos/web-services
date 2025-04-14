@@ -10,6 +10,6 @@ public class ProviderRepository(SweetManagerContext context) : BaseRepository<Pr
 {
     public async Task<IEnumerable<Provider>> GetAllProvidersAsync()
     {
-        return await context.Set<Provider>().ToListAsync();
+        return await Context.Set<Provider>().ToListAsync();
     }
 }

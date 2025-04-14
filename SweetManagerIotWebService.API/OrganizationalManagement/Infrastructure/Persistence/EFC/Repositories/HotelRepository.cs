@@ -9,21 +9,21 @@ public class HotelRepository(SweetManagerContext context) : BaseRepository<Hotel
 {
     public async Task<Hotel?> FindByNameAndEmailAsync(string name, string email)
     {
-        return await context.Set<Hotel>()
+        return await Context.Set<Hotel>()
             .Where(h => h.Name == name && h.Email == email)
             .FirstOrDefaultAsync();
     }
     
     public async Task<IEnumerable<Hotel>> GetAllHotelsAsync()
     {
-        return await context.Set<Hotel>()
+        return await Context.Set<Hotel>()
             .ToListAsync();
     }
 
     public async Task<Hotel?> UpdateHotelAsync(Hotel hotel)
     {
-        context.Set<Hotel>().Update(hotel);
-        await context.SaveChangesAsync();
+        Context.Set<Hotel>().Update(hotel);
+        await Context.SaveChangesAsync();
 
         return hotel;
     }
