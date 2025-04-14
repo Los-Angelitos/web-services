@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Mysqlx.Crud;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Commands;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
 
 namespace SweetManagerIotWebService.API;
@@ -26,4 +28,44 @@ public partial class Hotel
     public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
 
     public virtual ICollection<Supply> Supplies { get; set; } = new List<Supply>();
+
+    public Hotel()
+    {
+        // asd
+    }
+    
+    public Hotel(string name, string description, string email, string address, string phone)
+    {
+        Name = name;
+        Description = description;
+        Email = email;
+        Address = address;
+        Phone = phone;
+    }
+    public Hotel(CreateHotelCommand command)
+    {
+        OwnerId = command.OwnerId;
+        Name = command.Name;
+        Description = command.Description;
+        Email = command.Email;
+        Address = command.Address;
+        Phone = command.Phone;
+        
+        /*
+        // rooms from command, fill the collection
+        foreach (var room in command.Rooms)
+        {
+            Rooms.Add(new Room(room));
+        }
+        */
+    }
+    
+    public void UpdateData(UpdateHotelCommand command)
+    {
+        Description = command.Description;
+        Email = command.Email;
+        Address = command.Address;
+        Phone = command.Phone;
+        OwnerId = command.OwnerId;
+    }
 }
