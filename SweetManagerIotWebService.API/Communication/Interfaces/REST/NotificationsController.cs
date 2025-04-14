@@ -22,7 +22,7 @@ public class NotificationsController(INotificationCommandService notificationCom
         return CreatedAtAction(nameof(GetNotificationById), new { notificationId = notificationResource.Id }, notificationResource);
     }
 
-    [HttpGet("{notificationId:int")]
+    [HttpGet("{notificationId:int}")]
     public async Task<IActionResult> GetNotificationById(int notificationId)
     {
         var getNotificationByIdQuery = new GetNotificationByIdQuery(notificationId);
