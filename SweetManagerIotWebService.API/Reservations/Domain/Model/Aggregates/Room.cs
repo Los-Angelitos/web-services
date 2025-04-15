@@ -40,11 +40,46 @@ public partial class Room
         TypeRoomId = command.TypeRoomId;
         HotelId = command.HotelId;
         State = command.State?.ToUpper();
+        
+        Validate(1);
     }
 
     public Room(UpdateRoomStateCommand command)
     {
         this.Id = command.Id;
         this.State = command.State;
+        
+        Validate(2);
     }
+    
+    public void Validate(int type)
+    {
+        switch (type)
+        {
+            // Tipo 1: Validación para CreateRoomCommand
+            case 1:
+                if (TypeRoomId == null || TypeRoomId <= 0)
+                    throw new ArgumentException("El campo 'TypeRoomId' es obligatorio y debe ser válido.");
+
+                if (HotelId == null || HotelId <= 0)
+                    throw new ArgumentException("El campo 'HotelId' es obligatorio y debe ser válido.");
+
+                if (string.IsNullOrWhiteSpace(State))
+                    throw new ArgumentException("El campo 'State' no puede estar vacío.");
+                break;
+
+            // Tipo 2: Validación para UpdateRoomStateCommand
+            case 2:
+                if (Id <= 0)
+                    throw new ArgumentException("El campo 'Id' debe ser válido.");
+
+                if (string.IsNullOrWhiteSpace(State))
+                    throw new ArgumentException("El nuevo estado de la habitación es obligatorio.");
+                break;
+
+            default:
+                throw new ArgumentException("Tipo de validación desconocido.");
+        }
+    }
+
 }
