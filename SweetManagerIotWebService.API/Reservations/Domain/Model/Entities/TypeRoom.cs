@@ -32,5 +32,18 @@ public partial class TypeRoom
     {
         Description = command.Description;
         Price = command.Price;
+        
+        Validate();
     }
+    
+    public void Validate()
+    {
+                if (string.IsNullOrWhiteSpace(Description))
+                    throw new ArgumentException("El campo 'Description' es obligatorio y no puede estar vacío.");
+
+                if (Price <= 0)
+                    throw new ArgumentException("El campo 'Price' debe ser mayor a 0.");
+                
+    }
+
 }
