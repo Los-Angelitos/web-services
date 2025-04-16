@@ -6,6 +6,13 @@ using SweetManagerIotWebService.API.Shared.Infrastructure.Interfaces.ASP.Configu
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Repositories;
 using System.Data;
+using SweetManagerIotWebService.API.Reservations.Application.Internal.CommandServices;
+using SweetManagerIotWebService.API.Reservations.Application.Internal.QueryServices;
+using SweetManagerIotWebService.API.Reservations.Domain.Repositories;
+using SweetManagerIotWebService.API.Reservations.Domain.Services.Booking;
+using SweetManagerIotWebService.API.Reservations.Domain.Services.Room;
+using SweetManagerIotWebService.API.Reservations.Domain.Services.TypeRoom;
+using SweetManagerIotWebService.API.Reservations.Infrastructure.Persistence.EFC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -111,7 +118,17 @@ builder.Services.AddHttpContextAccessor();
 
 
 // Reservations bounded context
+builder.Services.AddScoped<IRoomCommandService, RoomCommandService>();
+builder.Services.AddScoped<IRoomQueryService, RoomQueryService>();
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 
+builder.Services.AddScoped<ITypeRoomRepository, TypeRoomRepository>();
+builder.Services.AddScoped<ITypeRoomCommandService, TypeRoomCommandServices>();
+builder.Services.AddScoped<ITypeRoomQueryService, TypeRoomQueryServices>();
+
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IBookingCommandServices, BookingCommandService>();
+builder.Services.AddScoped<IBookingQueryServices, BookingQueryService>();
 
 // Commerce Bounded context
 
