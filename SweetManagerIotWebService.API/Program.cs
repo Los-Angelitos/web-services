@@ -6,6 +6,11 @@ using SweetManagerIotWebService.API.Shared.Infrastructure.Interfaces.ASP.Configu
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Repositories;
 using System.Data;
+using SweetManagerIotWebService.API.Inventory.Application.Internal.CommandServices;
+using SweetManagerIotWebService.API.Inventory.Application.Internal.QueryServices;
+using SweetManagerIotWebService.API.Inventory.Domain.Repositories;
+using SweetManagerIotWebService.API.Inventory.Domain.Services;
+using SweetManagerIotWebService.API.Inventory.Infrastructure.Persistence.Repositories;
 using SweetManagerIotWebService.API.Communication.Application.Internal.CommandServices;
 using SweetManagerIotWebService.API.Communication.Application.Internal.QueryServices;
 using SweetManagerIotWebService.API.Communication.Domain.Repositories;
@@ -122,8 +127,13 @@ builder.Services.AddHttpContextAccessor();
 
 
 // Inventory Bounded Context
+builder.Services.AddScoped<ISupplyRepository, SupplyRepository>(); 
+builder.Services.AddScoped<ISupplyCommandService, SupplyCommandService>();
+builder.Services.AddScoped<ISupplyQueryService, SupplyQueryService>();
 
-
+builder.Services.AddScoped<ISupplyRequestRepository, SupplyRequestRepository>();
+builder.Services.AddScoped<ISupplyRequestCommandService, SupplyRequestCommandService>();
+builder.Services.AddScoped<ISupplyRequestQueryService, SupplyRequestQueryService>();
 // Communication Bounded context
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationCommandService, NotificationCommandService>();
