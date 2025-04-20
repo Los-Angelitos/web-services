@@ -33,8 +33,4 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.8.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commerce\Application\Internal\OutboundServices\ACL\" />
-  </ItemGroup>
-
 </Project>
