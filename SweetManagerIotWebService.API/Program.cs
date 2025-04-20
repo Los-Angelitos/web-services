@@ -6,6 +6,11 @@ using SweetManagerIotWebService.API.Shared.Infrastructure.Interfaces.ASP.Configu
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Repositories;
 using System.Data;
+using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.CommandServices;
+using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.QueryServices;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Repositories;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Services;
+using SweetManagerIotWebService.API.OrganizationalManagement.Infrastructure.Persistence.EFC.Repositories;
 using SweetManagerIotWebService.API.Inventory.Application.Internal.CommandServices;
 using SweetManagerIotWebService.API.Inventory.Application.Internal.QueryServices;
 using SweetManagerIotWebService.API.Inventory.Domain.Repositories;
@@ -141,7 +146,12 @@ builder.Services.AddScoped<INotificationQueryService, NotificationQueryService>(
 
 
 // Organizational Management Bounded context
-
+builder.Services.AddScoped<IHotelRepository, HotelRepository>();
+builder.Services.AddScoped<IHotelCommandService, HotelCommandService>();
+builder.Services.AddScoped<IHotelQueryService, HotelQueryService>();
+builder.Services.AddScoped<IProviderCommandService, ProviderCommandService>();
+builder.Services.AddScoped<IProviderQueryService, ProviderQueryService>();
+builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 
 
 // Shared Bounded context
