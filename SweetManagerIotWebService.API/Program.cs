@@ -6,11 +6,28 @@ using SweetManagerIotWebService.API.Shared.Infrastructure.Interfaces.ASP.Configu
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Repositories;
 using System.Data;
+
 using SweetManagerIotWebService.API.Commerce.Application.Internal.CommandServices;
 using SweetManagerIotWebService.API.Commerce.Application.Internal.QueryServices;
 using SweetManagerIotWebService.API.Commerce.Domain.Repositories;
 using SweetManagerIotWebService.API.Commerce.Domain.Services;
 using SweetManagerIotWebService.API.Commerce.Infrastructure.Persistence.EFC.Repositories;
+using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.CommandServices;
+using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.QueryServices;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Repositories;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Services;
+using SweetManagerIotWebService.API.OrganizationalManagement.Infrastructure.Persistence.EFC.Repositories;
+using SweetManagerIotWebService.API.Inventory.Application.Internal.CommandServices;
+using SweetManagerIotWebService.API.Inventory.Application.Internal.QueryServices;
+using SweetManagerIotWebService.API.Inventory.Domain.Repositories;
+using SweetManagerIotWebService.API.Inventory.Domain.Services;
+using SweetManagerIotWebService.API.Inventory.Infrastructure.Persistence.Repositories;
+using SweetManagerIotWebService.API.Communication.Application.Internal.CommandServices;
+using SweetManagerIotWebService.API.Communication.Application.Internal.QueryServices;
+using SweetManagerIotWebService.API.Communication.Domain.Repositories;
+using SweetManagerIotWebService.API.Communication.Domain.Services;
+using SweetManagerIotWebService.API.Communication.Infrastructure.Persistence.EFC.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -136,14 +153,26 @@ builder.Services.AddScoped<IContractOwnerCommandService, ContractOwnerCommandSer
 builder.Services.AddScoped<IContractOwnerQueryService, ContractOwnerQueryService>();
 
 // Inventory Bounded Context
+builder.Services.AddScoped<ISupplyRepository, SupplyRepository>(); 
+builder.Services.AddScoped<ISupplyCommandService, SupplyCommandService>();
+builder.Services.AddScoped<ISupplyQueryService, SupplyQueryService>();
 
-
+builder.Services.AddScoped<ISupplyRequestRepository, SupplyRequestRepository>();
+builder.Services.AddScoped<ISupplyRequestCommandService, SupplyRequestCommandService>();
+builder.Services.AddScoped<ISupplyRequestQueryService, SupplyRequestQueryService>();
 // Communication Bounded context
-
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<INotificationCommandService, NotificationCommandService>();
+builder.Services.AddScoped<INotificationQueryService, NotificationQueryService>();
 
 
 // Organizational Management Bounded context
-
+builder.Services.AddScoped<IHotelRepository, HotelRepository>();
+builder.Services.AddScoped<IHotelCommandService, HotelCommandService>();
+builder.Services.AddScoped<IHotelQueryService, HotelQueryService>();
+builder.Services.AddScoped<IProviderCommandService, ProviderCommandService>();
+builder.Services.AddScoped<IProviderQueryService, ProviderQueryService>();
+builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 
 
 // Shared Bounded context
