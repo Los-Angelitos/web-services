@@ -6,6 +6,12 @@ using SweetManagerIotWebService.API.Shared.Infrastructure.Interfaces.ASP.Configu
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Repositories;
 using System.Data;
+
+using SweetManagerIotWebService.API.Commerce.Application.Internal.CommandServices;
+using SweetManagerIotWebService.API.Commerce.Application.Internal.QueryServices;
+using SweetManagerIotWebService.API.Commerce.Domain.Repositories;
+using SweetManagerIotWebService.API.Commerce.Domain.Services;
+using SweetManagerIotWebService.API.Commerce.Infrastructure.Persistence.EFC.Repositories;
 using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.CommandServices;
 using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.QueryServices;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Repositories;
@@ -21,6 +27,7 @@ using SweetManagerIotWebService.API.Communication.Application.Internal.QueryServ
 using SweetManagerIotWebService.API.Communication.Domain.Repositories;
 using SweetManagerIotWebService.API.Communication.Domain.Services;
 using SweetManagerIotWebService.API.Communication.Infrastructure.Persistence.EFC.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -129,7 +136,21 @@ builder.Services.AddHttpContextAccessor();
 
 
 // Commerce Bounded context
+builder.Services.AddScoped<IPaymentCustomerRepository, PaymentCustomerRepository>();
+builder.Services.AddScoped<IPaymentCustomerCommandService, PaymentCustomerCommandService>();
+builder.Services.AddScoped<IPaymentCustomerQueryService, PaymentCustomerQueryService>();
 
+builder.Services.AddScoped<IPaymentOwnerRepository, PaymentOwnerRepository>();
+builder.Services.AddScoped<IPaymentOwnerCommandService, PaymentOwnerCommandService>();
+builder.Services.AddScoped<IPaymentOwnerQueryService, PaymentOwnerQueryService>();
+
+builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+builder.Services.AddScoped<ISubscriptionCommandService, SubscriptionCommandService>();
+builder.Services.AddScoped<ISubscriptionQueryService, SubscriptionQueryService>();
+
+builder.Services.AddScoped<IContractOwnerRepository, ContractOwnerRepository>();
+builder.Services.AddScoped<IContractOwnerCommandService, ContractOwnerCommandService>();
+builder.Services.AddScoped<IContractOwnerQueryService, ContractOwnerQueryService>();
 
 // Inventory Bounded Context
 builder.Services.AddScoped<ISupplyRepository, SupplyRepository>(); 
