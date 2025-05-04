@@ -5,10 +5,9 @@ namespace SweetManagerIotWebService.API.IAM.Domain.Repositories.Roles
 {
     public interface IRoleRepository : IBaseRepository<Role>
     {
-        Task<IEnumerable<Role>> FindAllAsync();
 
-        Task<Role?> FindByNameAsync();
+        Task<Role?> FindByNameAsync(string name);
 
-        Task<int?> FindIdByNameAsync();
+        Task<int?> FindIdByNameAsync(string name);
     }
 }
