@@ -9,16 +9,16 @@ public class DashboardRepository(IDbConnection dbConnection) : IDashboardReposit
     public async Task<IEnumerable<dynamic>> FindWeeklyComparativeIncomesAsync(int hotelId)
     {
         string query = $"SELECT " +
-                       $"WEEK(pc.created_at) AS week_number, " +
-                       $"YEAR(pc.created_at) AS year_number, " +
+                       $"WEEK(pc.CreatedAt) AS week_number, " +
+                       $"YEAR(pc.CreatedAt) AS year_number, " +
                        $"SUM(pc.final_amount) AS total_income, " +
                        $"SUM(po.final_amount) AS total_expense, " +
                        $"(SUM(pc.final_amount) - SUM(po.final_amount)) AS total_profit " +
-                       $"FROM payments_customers pc " +
-                       $"LEFT JOIN payments_owners po ON WEEK(pc.created_at) = WEEK(po.created_at) AND YEAR(pc.created_at) = YEAR(po.created_at) " +
-                       $"JOIN hotels ho ON po.owners_id = ho.owners_id " +
+                       $"FROM payment_customers pc " +
+                       $"LEFT JOIN payment_owners po ON WEEK(pc.CreatedAt) = WEEK(po.CreatedAt) AND YEAR(pc.CreatedAt) = YEAR(po.CreatedAt) " +
+                       $"JOIN hotels ho ON po.owner_id = ho.owner_id " +
                        $"WHERE ho.id = {hotelId} " +
-                       $"GROUP BY WEEK(pc.created_at), YEAR(pc.created_at) " +
+                       $"GROUP BY WEEK(pc.CreatedAt), YEAR(pc.CreatedAt) " +
                        $"ORDER BY year_number, week_number";
 
         var result = await dbConnection.QueryAsync<dynamic>(query, commandType: CommandType.Text);
@@ -28,16 +28,16 @@ public class DashboardRepository(IDbConnection dbConnection) : IDashboardReposit
     public async Task<IEnumerable<dynamic>> FindMonthlyComparativeIncomesAsync(int hotelId)
     {
         string query = $"SELECT " +
-                       $"MONTH(pc.created_at) AS month_number, " +
-                       $"YEAR(pc.created_at) AS year_number, " +
+                       $"MONTH(pc.CreatedAt) AS month_number, " +
+                       $"YEAR(pc.CreatedAt) AS year_number, " +
                        $"SUM(pc.final_amount) AS total_income, " +
                        $"SUM(po.final_amount) AS total_expense, " +
                        $"(SUM(pc.final_amount) - SUM(po.final_amount)) AS total_profit " +
-                       $"FROM payments_customers pc " +
-                       $"LEFT JOIN payments_owners po ON MONTH(pc.created_at) = MONTH(po.created_at) AND YEAR(pc.created_at) = YEAR(po.created_at) " +
-                       $"JOIN hotels ho ON po.owners_id = ho.owners_id " +
+                       $"FROM payment_customers pc " +
+                       $"LEFT JOIN payment_owners po ON MONTH(pc.CreatedAt) = MONTH(po.CreatedAt) AND YEAR(pc.CreatedAt) = YEAR(po.CreatedAt) " +
+                       $"JOIN hotels ho ON po.owner_id = ho.owner_id " +
                        $"WHERE ho.id = {hotelId} " +
-                       $"GROUP BY MONTH(pc.created_at), YEAR(pc.created_at) " +
+                       $"GROUP BY MONTH(pc.CreatedAt), YEAR(pc.CreatedAt) " +
                        $"ORDER BY year_number, month_number";
 
         var result = await dbConnection.QueryAsync<dynamic>(query, commandType: CommandType.Text);
