@@ -1,3 +1,3 @@
 ﻿namespace SweetManagerIotWebService.API.Commerce.Domain.Model.Queries;
 
-public record GetMonthlyIncomesByHotelId(int HotelId);
+public record GetWeeklyIncomesByHotelIdQuery(int HotelId);
