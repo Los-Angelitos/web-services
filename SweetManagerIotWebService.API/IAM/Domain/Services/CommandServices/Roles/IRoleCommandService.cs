@@ -5,7 +5,7 @@ namespace SweetManagerIotWebService.API.IAM.Domain.Services.CommandServices.Role
 {
     public interface IRoleCommandService
     {
-        Task<Role?> Handle(SeedRolesCommand command);
+        Task<bool> Handle(SeedRolesCommand command);
 
     }
 }
