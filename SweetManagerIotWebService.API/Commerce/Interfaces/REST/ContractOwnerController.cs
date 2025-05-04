@@ -16,7 +16,7 @@ public class ContractOwnerController(
     : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> CreatePaymentOwner(CreateContractOwnerResource resource)
+    public async Task<IActionResult> CreateContractOwner(CreateContractOwnerResource resource)
     {
         var createContractOwnerCommand = CreateContractOwnerCommandFromResourceAssembler.ToCommandFromResource(resource);
         var contractOwner = await contractOwnerCommandService.Handle(createContractOwnerCommand);
