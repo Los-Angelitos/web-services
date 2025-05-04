@@ -29,6 +29,8 @@ public partial class Hotel
 
     public virtual ICollection<Supply> Supplies { get; set; } = new List<Supply>();
 
+    public virtual ICollection<Admin> Admins { get; set; } = new List<Admin>();
+  
     public Hotel()
     {
         // asd
