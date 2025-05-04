@@ -15,4 +15,11 @@ public partial class Role
     public virtual ICollection<Owner> Owners { get; set; } = new List<Owner>();
 
     public virtual ICollection<Guest> Guests { get; set; } = new List<Guest>();
+
+    public Role() { }
+
+    public Role(string name)
+    {
+        Name = name;
+    }
 }
