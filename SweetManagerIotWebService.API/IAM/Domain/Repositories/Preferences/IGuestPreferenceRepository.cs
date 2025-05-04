@@ -5,8 +5,7 @@ namespace SweetManagerIotWebService.API.IAM.Domain.Repositories.Preferences
 {
     public interface IGuestPreferenceRepository : IBaseRepository<GuestPreference>
     {
-        Task<GuestPreference> FindByGuestId(int guestId);
+        Task<GuestPreference?> FindByGuestId(int guestId); 
 
-        Task<GuestPreference> FindById(int id);
     }
 }
