@@ -37,6 +37,7 @@
     <Folder Include="Commerce\Infrastructure\" />
     <Folder Include="Commerce\Application\" />
     <Folder Include="Commerce\Interfaces\" />
+    <Folder Include="IAM\Application\Internal\OutboundServices\ACL\" />
   </ItemGroup>
 
 </Project>
