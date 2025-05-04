@@ -4,8 +4,9 @@ using SweetManagerIotWebService.API.Commerce.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Commerce.Domain.Model.Entities;
 using SweetManagerIotWebService.API.Communication.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
-using SweetManagerIotWebService.API.IAM.Domain.Model.Entities;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Credentials;
+using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Preferences;
+using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Roles;
 using SweetManagerIotWebService.API.Inventory.Domain.Model.Entities;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
@@ -81,7 +82,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.HasIndex(e => e.RoleId, "role_id");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedNever();
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
                 .HasColumnName("email");
@@ -91,14 +92,26 @@ public partial class SweetManagerContext : DbContext
             entity.Property(e => e.Phone)
                 .HasMaxLength(15)
                 .HasColumnName("phone");
+
             entity.Property(e => e.RoleId).HasColumnName("role_id");
             entity.Property(e => e.Surname)
                 .HasMaxLength(100)
                 .HasColumnName("surname");
 
+            entity.Property(e => e.State)
+                .HasMaxLength(50)
+                .HasColumnName("state");
+
+            entity.HasIndex(e => e.HotelId, "hotel_id");
+            entity.Property(e => e.HotelId).HasColumnName("hotel_id");
+
             entity.HasOne(d => d.Role).WithMany(p => p.Admins)
                 .HasForeignKey(d => d.RoleId)
                 .HasConstraintName("admins_ibfk_1");
+
+            entity.HasOne(d => d.Hotel).WithMany(p => p.Admins)
+                .HasForeignKey(d => d.HotelId)
+                .HasConstraintName("admins_ibfk_2");
         });
 
         modelBuilder.Entity<AdminCredential>(entity =>
@@ -107,9 +120,9 @@ public partial class SweetManagerContext : DbContext
 
             entity.ToTable("admin_credentials");
 
-            entity.Property(e => e.AdminId).HasColumnName("admin_id");
+            entity.Property(e => e.AdminId).HasColumnName("admin_id").ValueGeneratedNever();
             entity.Property(e => e.Code)
-                .HasMaxLength(100)
+                .HasMaxLength(50)
                 .HasColumnName("code");
 
             entity.HasOne(d => d.Admin).WithOne(p => p.AdminCredential)
@@ -186,8 +199,7 @@ public partial class SweetManagerContext : DbContext
                 .HasColumnType("date")
                 .HasColumnName("start_date");
             entity.Property(e => e.Status)
-                .HasDefaultValueSql("'active'")
-                .HasColumnType("enum('active','cancelled')")
+                .HasMaxLength(50)
                 .HasColumnName("status");
             entity.Property(e => e.SubscriptionId).HasColumnName("subscription_id");
 
@@ -206,7 +218,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.ToTable("guests");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedNever();
 
             entity.HasIndex(e => e.RoleId, "role_id");
 
@@ -221,7 +233,7 @@ public partial class SweetManagerContext : DbContext
                 .HasColumnName("phone");
             entity.Property(e => e.State)
                 .HasDefaultValueSql("'active'")
-                .HasColumnType("enum('active','inactive')")
+                .HasColumnType("enum('ACTIVE','INACTIVE')")
                 .HasColumnName("state");
             entity.Property(e => e.Surname)
                 .HasMaxLength(50)
@@ -238,9 +250,9 @@ public partial class SweetManagerContext : DbContext
 
             entity.ToTable("guest_credentials");
 
-            entity.Property(e => e.GuestId).HasColumnName("guest_id");
+            entity.Property(e => e.GuestId).HasColumnName("guest_id").ValueGeneratedNever();
             entity.Property(e => e.Code)
-                .HasMaxLength(100)
+                .HasMaxLength(50)
                 .HasColumnName("code");
 
             entity.HasOne(d => d.Guest).WithOne(p => p.GuestCredential)
@@ -325,7 +337,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.HasIndex(e => e.RoleId, "role_id");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedNever();
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
                 .HasColumnName("email");
@@ -337,8 +349,7 @@ public partial class SweetManagerContext : DbContext
                 .HasColumnName("phone");
             entity.Property(e => e.RoleId).HasColumnName("role_id");
             entity.Property(e => e.State)
-                .HasDefaultValueSql("'active'")
-                .HasColumnType("enum('active','inactive','banned')")
+                .HasMaxLength(50)
                 .HasColumnName("state");
             entity.Property(e => e.Surname)
                 .HasMaxLength(50)
@@ -355,9 +366,9 @@ public partial class SweetManagerContext : DbContext
 
             entity.ToTable("owner_credentials");
 
-            entity.Property(e => e.OwnerId).HasColumnName("owner_id");
+            entity.Property(e => e.OwnerId).HasColumnName("owner_id").ValueGeneratedNever();
             entity.Property(e => e.Code)
-                .HasMaxLength(100)
+                .HasMaxLength(50)
                 .HasColumnName("code");
 
             entity.HasOne(d => d.Owner).WithOne(p => p.OwnerCredential)
@@ -424,8 +435,7 @@ public partial class SweetManagerContext : DbContext
                 .HasMaxLength(15)
                 .HasColumnName("phone");
             entity.Property(e => e.State)
-                .HasDefaultValueSql("'active'")
-                .HasColumnType("enum('active','inactive')")
+                .HasMaxLength(50)
                 .HasColumnName("state");
         });
 
@@ -433,8 +443,8 @@ public partial class SweetManagerContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("roles");
 
+            entity.ToTable("roles");
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
@@ -485,8 +495,7 @@ public partial class SweetManagerContext : DbContext
                 .HasPrecision(10)
                 .HasColumnName("price");
             entity.Property(e => e.Status)
-                .HasDefaultValueSql("'active'")
-                .HasColumnType("enum('active','inactive')")
+                .HasMaxLength(50)
                 .HasColumnName("status");
         });
 
@@ -510,8 +519,7 @@ public partial class SweetManagerContext : DbContext
                 .HasColumnName("price");
             entity.Property(e => e.ProviderId).HasColumnName("provider_id");
             entity.Property(e => e.State)
-                .HasDefaultValueSql("'active'")
-                .HasColumnType("enum('active','inactive')")
+                .HasMaxLength(50)
                 .HasColumnName("state");
             entity.Property(e => e.Stock).HasColumnName("stock");
 
