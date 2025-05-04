@@ -7,6 +7,7 @@ using SweetManagerIotWebService.API.Shared.Domain.Repositories;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Exceptions;
 using SweetManagerIotWebService.API.IAM.Domain.Repositories.Credentials;
 using SweetManagerIotWebService.API.IAM.Infrastructure.Persistence.EFC.Repositories.Users;
+using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Credentials;
 
 namespace SweetManagerIotWebService.API.IAM.Application.Internal.CommandServices.Users
 {
@@ -65,12 +66,14 @@ namespace SweetManagerIotWebService.API.IAM.Application.Internal.CommandServices
                 if (user is null)
                     throw new EmailDoesntExistException();
 
-                var userCredential = await adminCredentialRepository.FindByIdAsync(user.Id);
+                AdminCredential userCredential = await adminCredentialRepository.FindByIdAsync(user.Id);
 
                 if (!hashingService.VerifyHash(command.Password, userCredential!.Code[..24], userCredential!.Code[24..]))
                     throw new InvalidPasswordException();
 
                 var hotel = await adminRepository.FindHotelIdByIdAsync(user.Id);
+
+                hotel ??= 0;
 
                 var token = tokenService.GenerateToken(new
                 {

@@ -93,7 +93,7 @@ namespace SweetManagerIotWebService.API.IAM.Interfaces.REST
 
                 dynamic? authenticatedUser = "";
 
-                if (resource.RoleId is 1)
+                if (resource.RoleId is 1) 
                     authenticatedUser = await ownerCommandService.Handle(signInCommand);
                 else if (resource.RoleId is 2)
                     authenticatedUser = await adminCommandService.Handle(signInCommand);
