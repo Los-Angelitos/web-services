@@ -2,5 +2,6 @@
 
 public interface IDashboardRepository
 {
-    Task<IEnumerable<dynamic>> FindComparativeIncomesAsync(int hotelId);
+    Task<IEnumerable<dynamic>> FindWeeklyComparativeIncomesAsync(int hotelId);
+    Task<IEnumerable<dynamic>> FindMonthlyComparativeIncomesAsync(int hotelId);
 }
