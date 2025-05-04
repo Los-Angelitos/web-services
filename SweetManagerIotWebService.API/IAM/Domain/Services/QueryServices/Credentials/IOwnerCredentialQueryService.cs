@@ -5,6 +5,6 @@ namespace SweetManagerIotWebService.API.IAM.Domain.Services.QueryServices.Creden
 {
     public interface IOwnerCredentialQueryService
     {
-        Task<OwnerCredential?> FindByIdAsync(GetUserCredentialByIdQuery query);
+        Task<OwnerCredential?> Handle(GetUserCredentialByIdQuery query);
     }
 }
