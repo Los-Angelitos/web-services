@@ -12,7 +12,8 @@ namespace SweetManagerIotWebService.API.Commerce.Interfaces.REST;
 [Produces(MediaTypeNames.Application.Json)]
 public class PaymentOwnerController(
     IPaymentOwnerCommandService paymentOwnerCommandService,
-    IPaymentOwnerQueryService paymentOwnerQueryService)
+    IPaymentOwnerQueryService paymentOwnerQueryService,
+    IDashboardQueryService dashboardQueryService)
     : ControllerBase
 {
     [HttpPost]
@@ -66,5 +67,41 @@ public class PaymentOwnerController(
         if (paymentOwner is null) return NotFound();
         var paymentOwnerResource = PaymentOwnerResourceFromEntityAssembler.ToResourceFromEntity(paymentOwner);
         return Ok(paymentOwnerResource);
+    }
+    
+    [HttpGet("weekly-incomes/{hotelId:int}")]
+    public async Task<IActionResult> GetWeeklyComparativeIncomesAndExpenses(int hotelId)
+    {
+        try
+        {
+            var comparativeIncomes = await dashboardQueryService.Handle(new GetWeeklyIncomesByHotelIdQuery(hotelId));
+
+            var comparativeIncomesResources =
+                comparativeIncomes.Select(ComparativeWeeklyIncomeResourceFromEntityAssembler.ToResourceFromEntity);
+            
+            return Ok(comparativeIncomesResources);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+    
+    [HttpGet("monthly-incomes/{hotelId:int}")]
+    public async Task<IActionResult> GetMonthlyComparativeIncomesAndExpenses(int hotelId)
+    {
+        try
+        {
+            var comparativeIncomes = await dashboardQueryService.Handle(new GetMonthlyIncomesByHotelIdQuery(hotelId));
+
+            var comparativeIncomesResources =
+                comparativeIncomes.Select(ComparativeMonthlyIncomeResourceFromEntityAssembler.ToResourceFromEntity);
+            
+            return Ok(comparativeIncomesResources);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }
