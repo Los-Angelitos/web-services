@@ -9,6 +9,6 @@ namespace SweetManagerIotWebService.API.IAM.Domain.Services.QueryServices.Roles
 
         Task<Role?> Handle(GetRoleByNameQuery query);
 
-        Task<Role?> Handle(GetRoleIdByNameQuery query);
+        Task<int?> Handle(GetRoleIdByNameQuery query);
     }
 }
