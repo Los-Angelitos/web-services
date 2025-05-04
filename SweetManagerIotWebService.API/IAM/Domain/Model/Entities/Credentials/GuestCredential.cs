@@ -11,4 +11,12 @@ public partial class GuestCredential
     public string? Code { get; set; }
 
     public virtual Guest Guest { get; set; } = null!;
+
+    public GuestCredential() { }
+
+    public GuestCredential(int guestId, string code)
+    {
+        GuestId = guestId;
+        Code = code;
+    }
 }
