@@ -44,6 +44,7 @@ using SweetManagerIotWebService.API.Commerce.Application.Internal.CommandService
 using SweetManagerIotWebService.API.Commerce.Application.Internal.QueryServices;
 using SweetManagerIotWebService.API.Commerce.Domain.Repositories;
 using SweetManagerIotWebService.API.Commerce.Domain.Services;
+using SweetManagerIotWebService.API.Commerce.Infrastructure.Persistence.Dapper.Dashboard;
 using SweetManagerIotWebService.API.Commerce.Infrastructure.Persistence.EFC.Repositories;
 using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.CommandServices;
 using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.QueryServices;
@@ -210,6 +211,9 @@ builder.Services.AddScoped<ISubscriptionQueryService, SubscriptionQueryService>(
 builder.Services.AddScoped<IContractOwnerRepository, ContractOwnerRepository>();
 builder.Services.AddScoped<IContractOwnerCommandService, ContractOwnerCommandService>();
 builder.Services.AddScoped<IContractOwnerQueryService, ContractOwnerQueryService>();
+
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+builder.Services.AddScoped<IDashboardQueryService, DashboardQueryService>();
 
 // Inventory Bounded Context
 builder.Services.AddScoped<ISupplyRepository, SupplyRepository>(); 
