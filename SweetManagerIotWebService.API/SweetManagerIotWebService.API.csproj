@@ -39,6 +39,6 @@
     <Folder Include="Commerce\Interfaces\" />
     <Folder Include="Reservations\Application\Internal\OutBoundService\ACL\" />
     <Folder Include="Reservations\Interfaces\ACL\" />
+    <Folder Include="IAM\Application\Internal\OutboundServices\ACL\" />
   </ItemGroup>
-
 </Project>

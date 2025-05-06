@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using SweetManagerIotWebService.API.Commerce.Domain.Model.Aggregates;
-using SweetManagerIotWebService.API.IAM.Domain.Model.Entities;
+using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Preferences;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Commands.Booking;
 
