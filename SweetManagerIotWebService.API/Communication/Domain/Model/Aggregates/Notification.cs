@@ -17,6 +17,7 @@ public partial class Notification
         SenderType = command.SenderType;
         SenderId = command.SenderId;
         ReceiverId = command.ReceiverId;
+        HotelId = command.HotelId;
     }
 
     public int Id { get; set; }
@@ -30,4 +31,8 @@ public partial class Notification
     public int? SenderId { get; set; }
 
     public int? ReceiverId { get; set; }
+    
+    public int? HotelId { get; set; }
+    
+    public virtual Hotel? Hotel { get; set; }
 }

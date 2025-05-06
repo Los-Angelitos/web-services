@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Mysqlx.Crud;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.Inventory.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Commands;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
 
