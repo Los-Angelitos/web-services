@@ -9,6 +9,16 @@ public partial class Notification
     public Notification()
     {
     }
+    
+    public Notification(string title, string content, string senderType, int? senderId, int? receiverId, int? hotelId)
+    {
+        Title = title;
+        Content = content;
+        SenderType = senderType;
+        SenderId = senderId;
+        ReceiverId = receiverId;
+        HotelId = hotelId;
+    }
 
     public Notification(CreateNotificationCommand command)
     {
