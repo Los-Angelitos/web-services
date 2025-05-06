@@ -7,6 +7,7 @@ using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Credentials;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Preferences;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Roles;
+using SweetManagerIotWebService.API.Inventory.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Inventory.Domain.Model.Entities;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;

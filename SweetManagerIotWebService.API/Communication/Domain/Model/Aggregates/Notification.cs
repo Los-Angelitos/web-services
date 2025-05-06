@@ -9,6 +9,16 @@ public partial class Notification
     public Notification()
     {
     }
+    
+    public Notification(string title, string content, string senderType, int? senderId, int? receiverId, int? hotelId)
+    {
+        Title = title;
+        Content = content;
+        SenderType = senderType;
+        SenderId = senderId;
+        ReceiverId = receiverId;
+        HotelId = hotelId;
+    }
 
     public Notification(CreateNotificationCommand command)
     {
@@ -17,6 +27,7 @@ public partial class Notification
         SenderType = command.SenderType;
         SenderId = command.SenderId;
         ReceiverId = command.ReceiverId;
+        HotelId = command.HotelId;
     }
 
     public int Id { get; set; }
@@ -30,4 +41,8 @@ public partial class Notification
     public int? SenderId { get; set; }
 
     public int? ReceiverId { get; set; }
+    
+    public int? HotelId { get; set; }
+    
+    public virtual Hotel? Hotel { get; set; }
 }

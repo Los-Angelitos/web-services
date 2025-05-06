@@ -8,6 +8,6 @@ public static class NotificationResourceFromEntityAssembler
     public static NotificationResource ToResourceFromEntity(Notification entity) 
     {
         return new NotificationResource(entity.Id, entity.Title, entity.Content, entity.SenderType, entity.SenderId,
-            entity.ReceiverId);
+            entity.ReceiverId, entity.HotelId);
     }
 }

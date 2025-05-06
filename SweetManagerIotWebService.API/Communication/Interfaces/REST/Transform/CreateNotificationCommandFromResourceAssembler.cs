@@ -12,6 +12,8 @@ public static class CreateNotificationCommandFromResourceAssembler
             resource.Content, 
             resource.SenderType, 
             resource.SenderId, 
-            resource.ReceiverId);
+            resource.ReceiverId,
+            resource.HotelId
+            );
     }
 }
