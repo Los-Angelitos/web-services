@@ -12,6 +12,7 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+.idea/
 
 # Mono auto generated files
 mono_crash.*
@@ -360,4 +361,4 @@ MigrationBackup/
 .ionide/
 
 # Fody - auto-generated XML schema
-FodyWeavers.xsd
+FodyWeavers.xsdSweetManagerIotWebService.API/SweetManagerIotWebService.API.csproj
