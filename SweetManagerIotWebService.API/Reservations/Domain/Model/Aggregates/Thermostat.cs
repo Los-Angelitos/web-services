@@ -1,4 +1,6 @@
-﻿namespace SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
+﻿using SweetManagerIotWebService.API.Reservations.Domain.Model.Commands.Thermostat;
+
+namespace SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
 
 public partial class Thermostat
 {
@@ -60,6 +62,7 @@ public partial class Thermostat
         Id = command.Id;
         Temperature = command.Temperature;
     }
+    
     
     
     
