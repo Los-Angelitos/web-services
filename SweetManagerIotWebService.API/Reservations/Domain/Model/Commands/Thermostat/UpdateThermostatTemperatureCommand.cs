@@ -2,4 +2,4 @@
 
 public record UpdateThermostatTemperatureCommand(
     int Id,
-    int? Temperature);
+    double? Temperature);
