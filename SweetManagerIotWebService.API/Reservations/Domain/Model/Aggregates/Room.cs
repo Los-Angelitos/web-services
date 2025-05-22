@@ -16,6 +16,9 @@ public partial class Room
     
     [JsonIgnore]
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
+    
+    public virtual ICollection<Thermostat> Thermostats { get; set; } = new List<Thermostat>();
+
 
     public virtual Hotel? Hotel { get; set; }
 
@@ -34,7 +37,6 @@ public partial class Room
         HotelId = hotelId;
         State = state.ToUpper(); 
     }
-
     public Room(CreateRoomCommand command)
     {
         TypeRoomId = command.TypeRoomId;

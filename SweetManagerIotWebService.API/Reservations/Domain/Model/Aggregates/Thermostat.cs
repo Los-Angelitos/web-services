@@ -8,7 +8,7 @@ public partial class Thermostat
     
     public int? RoomId { get; set;  }
     
-    public int ? Temperature { get; set;  }
+    public double ? Temperature { get; set;  }
     
     public string? IpAddress { get; set;  }
     
@@ -20,7 +20,7 @@ public partial class Thermostat
     
     public virtual Room? Room { get; set;  }
     
-    public Thermostat(int id, int? roomId, int? temperature, string? ipAddress, string? macAddress, string? state, DateTime? lastUpdate)
+    public Thermostat(int id, int? roomId, double? temperature, string? ipAddress, string? macAddress, string? state, DateTime? lastUpdate)
     {
         Id = id;
         RoomId = roomId;
