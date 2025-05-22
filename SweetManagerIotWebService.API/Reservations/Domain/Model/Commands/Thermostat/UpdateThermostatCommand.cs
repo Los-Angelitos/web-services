@@ -3,7 +3,7 @@
 public record UpdateThermostatCommand(
     int Id,
     int? RoomId,
-    int? Temperature,
+    double? Temperature,
     string? IpAddress,
     string? MacAddress,
     string? State,
