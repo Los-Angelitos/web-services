@@ -2,7 +2,7 @@
 
 public record CreateThermostatCommand(
     int? RoomId,
-    int? Temperature,
+    double? Temperature,
     string? IpAddress,
     string? MacAddress,
     string? State,
