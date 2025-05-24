@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SweetManagerIotWebService.API.Inventory.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Commands;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.ValueObjects;
 

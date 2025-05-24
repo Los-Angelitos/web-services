@@ -2,6 +2,7 @@
 using MySqlX.XDevAPI.Common;
 using SweetManagerIotWebService.API.Commerce.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities;
+using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Preferences;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Reservations.Domain.Repositories;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Configuration;

@@ -7,6 +7,7 @@ using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Credentials;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Preferences;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Roles;
+using SweetManagerIotWebService.API.Inventory.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Inventory.Domain.Model.Entities;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
@@ -557,6 +558,34 @@ public partial class SweetManagerContext : DbContext
             entity.HasOne(d => d.Supply).WithMany(p => p.SupplyRequests)
                 .HasForeignKey(d => d.SupplyId)
                 .HasConstraintName("supply_requests_ibfk_2");
+        });
+        
+        modelBuilder.Entity<Thermostat>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("thermostats");
+
+            entity.Property(t => t.Id).HasColumnName("id");
+            entity.Property(t => t.Temperature);
+            entity.Property(t => t.IpAddress)
+                .HasMaxLength(100)
+                .HasColumnName("ip_address");
+            entity.Property(t => t.MacAddress)
+                .HasMaxLength(100)
+                .HasColumnName("mac_address");
+            entity.Property(t => t.State)
+                .HasMaxLength(50)
+                .HasColumnName("state");
+            entity.Property(t => t.LastUpdate)
+                .HasColumnType("date")
+                .HasColumnName("last_update");
+            entity.Property(t => t.RoomId).HasColumnName("room_id");
+            
+            
+            entity.HasOne(d => d.Room).WithMany(p => p.Thermostats)
+                .HasForeignKey(d => d.RoomId)
+                .HasConstraintName("thermostats_ibfk_1");
         });
 
         modelBuilder.Entity<TypeRoom>(entity =>
