@@ -1,5 +1,6 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
+using SweetManagerIotWebService.API.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using SweetManagerIotWebService.API.Inventory.Domain.Model.Queries.Supply;
 using SweetManagerIotWebService.API.Inventory.Domain.Services;
 using SweetManagerIotWebService.API.Inventory.Interfaces.REST.Resources;
@@ -10,6 +11,7 @@ namespace SweetManagerIotWebService.API.Inventory.Interfaces.REST
     [Route("api/[controller]")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
+    [Authorize]
     public class SupplyController(ISupplyCommandService supplyCommandService, ISupplyQueryService supplyQueryService) : ControllerBase
     {
         [HttpPost("create-supply")]

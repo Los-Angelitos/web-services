@@ -4,12 +4,14 @@ using SweetManagerIotWebService.API.Commerce.Domain.Model.Queries;
 using SweetManagerIotWebService.API.Commerce.Domain.Services;
 using SweetManagerIotWebService.API.Commerce.Interfaces.REST.Resources;
 using SweetManagerIotWebService.API.Commerce.Interfaces.REST.Transform;
+using SweetManagerIotWebService.API.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 
 namespace SweetManagerIotWebService.API.Commerce.Interfaces.REST;
 
 [ApiController]
 [Route("api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
+[Authorize]
 public class PaymentOwnerController(
     IPaymentOwnerCommandService paymentOwnerCommandService,
     IPaymentOwnerQueryService paymentOwnerQueryService,
