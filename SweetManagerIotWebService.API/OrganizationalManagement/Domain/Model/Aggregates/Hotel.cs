@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Mysqlx.Crud;
+using SweetManagerIotWebService.API.Communication.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Inventory.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Commands;
@@ -31,7 +32,9 @@ public partial class Hotel
     public virtual ICollection<Supply> Supplies { get; set; } = new List<Supply>();
 
     public virtual ICollection<Admin> Admins { get; set; } = new List<Admin>();
-  
+
+    public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
+
     public Hotel()
     {
         // asd

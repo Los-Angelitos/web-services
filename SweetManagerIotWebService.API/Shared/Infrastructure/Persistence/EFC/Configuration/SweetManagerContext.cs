@@ -337,6 +337,13 @@ public partial class SweetManagerContext : DbContext
             entity.Property(e => e.Title)
                 .HasMaxLength(100)
                 .HasColumnName("title");
+
+            entity.Property(e => e.HotelId)
+                .HasColumnName("hotel_id");
+
+            entity.HasOne(d => d.Hotel).WithMany(p => p.Notifications)
+                .HasForeignKey(d => d.HotelId)
+                .HasConstraintName("notifications_ibfk_1");
         });
 
         modelBuilder.Entity<Owner>(entity =>
