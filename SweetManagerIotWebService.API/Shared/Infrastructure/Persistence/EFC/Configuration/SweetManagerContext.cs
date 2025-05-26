@@ -11,6 +11,7 @@ using SweetManagerIotWebService.API.Inventory.Domain.Model.Entities;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Entities;
+using System.Data;
 
 namespace SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -101,6 +102,10 @@ public partial class SweetManagerContext : DbContext
             entity.Property(e => e.State)
                 .HasMaxLength(50)
                 .HasColumnName("state");
+
+            entity.Property(e => e.PhotoURL)
+                .HasMaxLength(5000)
+                .HasColumnName("photo_url").IsRequired(false);
 
             entity.HasIndex(e => e.HotelId, "hotel_id");
             entity.Property(e => e.HotelId).HasColumnName("hotel_id");
@@ -232,12 +237,16 @@ public partial class SweetManagerContext : DbContext
                 .HasMaxLength(15)
                 .HasColumnName("phone");
             entity.Property(e => e.State)
-                .HasDefaultValueSql("'active'")
-                .HasColumnType("enum('ACTIVE','INACTIVE')")
+                .HasMaxLength(50)
                 .HasColumnName("state");
+
             entity.Property(e => e.Surname)
                 .HasMaxLength(50)
                 .HasColumnName("surname");
+
+            entity.Property(e => e.PhotoURL)
+                .HasMaxLength(5000)
+                .HasColumnName("photo_url").IsRequired(false);
 
             entity.HasOne(d => d.Role).WithMany(p => p.Guests)
                 .HasForeignKey(d => d.RoleId)
@@ -354,6 +363,10 @@ public partial class SweetManagerContext : DbContext
             entity.Property(e => e.Surname)
                 .HasMaxLength(50)
                 .HasColumnName("surname");
+
+            entity.Property(e => e.PhotoURL)
+                .HasMaxLength(5000)
+                .HasColumnName("photo_url").IsRequired(false);
 
             entity.HasOne(d => d.Role).WithMany(p => p.Owners)
                 .HasForeignKey(d => d.RoleId)

@@ -25,7 +25,7 @@ namespace SweetManagerIotWebService.API.IAM.Application.Internal.CommandServices
                 // Add Admin
 
                 var entity = new Guest(command.Id, command.Name, command.Surname, command.Phone,
-                    command.Email, "ACTIVE", 3);
+                    command.Email, "ACTIVE", 3, command.PhotoURL);
 
                 await guestRepository.AddAsync(entity);
 
