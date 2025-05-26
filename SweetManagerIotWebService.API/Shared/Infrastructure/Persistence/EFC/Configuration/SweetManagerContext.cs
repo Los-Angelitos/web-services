@@ -105,7 +105,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.Property(e => e.PhotoURL)
                 .HasMaxLength(5000)
-                .HasColumnName("photo_url");
+                .HasColumnName("photo_url").IsRequired(false);
 
             entity.HasIndex(e => e.HotelId, "hotel_id");
             entity.Property(e => e.HotelId).HasColumnName("hotel_id");
@@ -246,7 +246,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.Property(e => e.PhotoURL)
                 .HasMaxLength(5000)
-                .HasColumnName("photo_url");
+                .HasColumnName("photo_url").IsRequired(false);
 
             entity.HasOne(d => d.Role).WithMany(p => p.Guests)
                 .HasForeignKey(d => d.RoleId)
@@ -366,7 +366,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.Property(e => e.PhotoURL)
                 .HasMaxLength(5000)
-                .HasColumnName("photo_url");
+                .HasColumnName("photo_url").IsRequired(false);
 
             entity.HasOne(d => d.Role).WithMany(p => p.Owners)
                 .HasForeignKey(d => d.RoleId)

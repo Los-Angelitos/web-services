@@ -23,7 +23,7 @@ public partial class Admin
 
     public int? HotelId { get; private set; }
 
-    public string PhotoURL { get; private set; }
+    public string? PhotoURL { get; private set; }
 
     public virtual AdminCredential? AdminCredential { get; set; }
 

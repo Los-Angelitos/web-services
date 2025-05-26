@@ -24,7 +24,7 @@ public partial class Guest
 
     public int? RoleId { get; set; }
 
-    public string PhotoURL { get; set; }
+    public string? PhotoURL { get; set; }
 
     public virtual GuestCredential? GuestCredential { get; set; }
 

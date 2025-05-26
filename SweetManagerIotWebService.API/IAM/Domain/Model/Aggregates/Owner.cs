@@ -24,7 +24,7 @@ public partial class Owner
 
     public int? RoleId { get; private set; }
 
-    public string PhotoURL { get; private set; }
+    public string? PhotoURL { get; private set; }
 
     public virtual ICollection<ContractOwner> ContractOwners { get; set; } = new List<ContractOwner>();
 
