@@ -1,5 +1,6 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
+using SweetManagerIotWebService.API.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Commands;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Queries;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Services;
@@ -18,6 +19,7 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST
 [ApiController]
 [Route("api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
+[Authorize]
 public class ProvidersController(IProviderCommandService providerCommandService, IProviderQueryService providerQueryService) : ControllerBase
 {
     [HttpPost]
