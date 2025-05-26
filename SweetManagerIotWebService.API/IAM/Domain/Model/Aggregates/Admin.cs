@@ -23,6 +23,8 @@ public partial class Admin
 
     public int? HotelId { get; private set; }
 
+    public string PhotoURL { get; private set; }
+
     public virtual AdminCredential? AdminCredential { get; set; }
 
     public virtual Role? Role { get; set; }
@@ -31,7 +33,7 @@ public partial class Admin
 
     public Admin() { }
 
-    public Admin(int id, string name, string surname, string phone, string email, string state, int roleId)
+    public Admin(int id, string name, string surname, string phone, string email, string state, int roleId, string photoURL)
     {
         Id = id;
         Name = name;
@@ -40,6 +42,7 @@ public partial class Admin
         Email = email;
         State = state;
         RoleId = roleId;
+        PhotoURL = photoURL;
     }
 
     public Admin(UpdateUserCommand command)
@@ -50,6 +53,7 @@ public partial class Admin
         Phone = command.Phone;
         Email = command.Email;
         State = command.State;
+        PhotoURL = command.PhotoURL;
     }
 
     public Admin Update(UpdateUserCommand command)
@@ -60,6 +64,7 @@ public partial class Admin
         Phone = command.Phone;
         Email = command.Email;
         State = command.State;
+        PhotoURL = command.PhotoURL;
 
         return this;
     }

@@ -8,7 +8,7 @@ namespace SweetManagerIotWebService.API.IAM.Interfaces.REST.Transform.Users
         public static UpdateUserCommand ToCommandFromResource(UpdateUserResource resource, int id)
         {
             return new UpdateUserCommand(id, resource.Name, resource.Surname,
-                resource.Phone, resource.Email, resource.State);
+                resource.Phone, resource.Email, resource.State, resource.PhotoURL);
         }
     }
 }

@@ -24,6 +24,8 @@ public partial class Guest
 
     public int? RoleId { get; set; }
 
+    public string PhotoURL { get; set; }
+
     public virtual GuestCredential? GuestCredential { get; set; }
 
     public virtual ICollection<GuestPreference> GuestPreferences { get; set; } = new List<GuestPreference>();
@@ -34,7 +36,7 @@ public partial class Guest
 
     public Guest() { }
 
-    public Guest(int id, string name, string surname, string phone, string email, string state, int roleId)
+    public Guest(int id, string name, string surname, string phone, string email, string state, int roleId, string photoURL)
     {
         Id = id;
         Name = name;
@@ -43,6 +45,7 @@ public partial class Guest
         Email = email;
         State = state;
         RoleId = roleId;
+        PhotoURL = photoURL;
     }
 
     public Guest(UpdateUserCommand command)
@@ -53,6 +56,7 @@ public partial class Guest
         Phone = command.Phone;
         Email = command.Email;
         State = command.State;
+        PhotoURL = command.PhotoURL;
     }
 
     public Guest Update(UpdateUserCommand command)
@@ -63,6 +67,7 @@ public partial class Guest
         Phone = command.Phone;
         Email = command.Email;
         State = command.State;
+        PhotoURL = command.PhotoURL;
 
         return this;
     }

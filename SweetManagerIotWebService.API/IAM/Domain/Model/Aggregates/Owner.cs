@@ -10,19 +10,21 @@ namespace SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
 
 public partial class Owner
 {
-    public int Id { get; set; }
+    public int Id { get; private set; }
 
-    public string? Name { get; set; }
+    public string? Name { get; private set; }
 
-    public string? Surname { get; set; }
+    public string? Surname { get; private set; }
 
-    public string? Phone { get; set; }
+    public string? Phone { get; private set; }
 
-    public string? Email { get; set; }
+    public string? Email { get; private set; }
 
-    public string? State { get; set; }
+    public string? State { get; private set; }
 
-    public int? RoleId { get; set; }
+    public int? RoleId { get; private set; }
+
+    public string PhotoURL { get; private set; }
 
     public virtual ICollection<ContractOwner> ContractOwners { get; set; } = new List<ContractOwner>();
 
@@ -36,7 +38,7 @@ public partial class Owner
 
     public Owner() { }
 
-    public Owner(int id, string name, string surname, string phone, string email, string state, int roleId)
+    public Owner(int id, string name, string surname, string phone, string email, string state, int roleId, string photoURL)
     {
         Id = id;
         Name = name;
@@ -45,6 +47,7 @@ public partial class Owner
         Email = email;
         State = state;
         RoleId = roleId;
+        PhotoURL = photoURL;
     }
 
     public Owner(UpdateUserCommand command)
@@ -55,6 +58,7 @@ public partial class Owner
         Phone = command.Phone;
         Email = command.Email;
         State = command.State;
+        PhotoURL = command.PhotoURL;
     }
 
     public Owner Update(UpdateUserCommand command)
@@ -65,6 +69,7 @@ public partial class Owner
         Phone = command.Phone;
         Email = command.Email;
         State = command.State;
+        PhotoURL = command.PhotoURL;
 
         return this;
     }
