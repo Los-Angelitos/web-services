@@ -68,6 +68,7 @@ using SweetManagerIotWebService.API.Communication.Application.Internal.QueryServ
 using SweetManagerIotWebService.API.Communication.Domain.Repositories;
 using SweetManagerIotWebService.API.Communication.Domain.Services;
 using SweetManagerIotWebService.API.Communication.Infrastructure.Persistence.EFC.Repositories;
+using SweetManagerIotWebService.API.Reservations.Domain.Services.Thermostat;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -210,6 +211,12 @@ builder.Services.AddScoped<ITypeRoomQueryService, TypeRoomQueryServices>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IBookingCommandServices, BookingCommandService>();
 builder.Services.AddScoped<IBookingQueryServices, BookingQueryService>();
+
+builder.Services.AddScoped<IThermostatRepositoy, ThermostatRepository>();
+builder.Services.AddScoped<IThermostatCommandService, ThermostatCommandService>();
+builder.Services.AddScoped<IThermostatQueryServices, ThermostatQueryService>();
+
+
 
 // Commerce Bounded context
 builder.Services.AddScoped<IPaymentCustomerRepository, PaymentCustomerRepository>();
