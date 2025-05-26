@@ -7,4 +7,12 @@ public interface INotificationQueryService
 {
     Task<Notification?> Handle(GetNotificationByIdQuery query);
     
+    Task<IEnumerable<Notification>> Handle(GetNotificationBySenderIdQuery query);
+    
+    Task<IEnumerable<Notification>> Handle(GetNotificationByReceiverIdQuery query);
+    
+    Task<IEnumerable<Notification>> Handle(GetNotificationBySenderAndReceiverIdQuery query);
+    
+    Task<IEnumerable<Notification>> Handle(GetNotificationsByHotelIdQuery query);
+    
 }
