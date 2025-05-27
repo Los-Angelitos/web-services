@@ -21,21 +21,21 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.En
 
         public Multimedia(CreateMultimediaCommand command)
         {
-            ValidateBeforeInsert();
             HotelId = command.HotelId;
             Url = command.Url;
             Type = Enum.Parse<ETypeMultimedia>(command.Type);
             Position = command.Position;
+            ValidateBeforeInsert();
         }
 
         public void UpdateData(UpdateMultimediaCommand command)
         {
-            ValidateBeforeUpdate();
             Id = command.Id;
             HotelId = command.HotelId;
             Url = command.Url;
             Type = Enum.Parse<ETypeMultimedia>(command.Type);
             Position = command.Position;
+            ValidateBeforeUpdate();
         }
 
         private void ValidateBeforeInsert()
