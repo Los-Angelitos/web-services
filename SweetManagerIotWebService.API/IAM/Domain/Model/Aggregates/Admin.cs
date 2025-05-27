@@ -54,6 +54,7 @@ public partial class Admin
         Email = command.Email;
         State = command.State;
         PhotoURL = command.PhotoURL;
+        ValidateBeforeInsert();
     }
 
     public Admin Update(UpdateUserCommand command)
@@ -65,7 +66,41 @@ public partial class Admin
         Email = command.Email;
         State = command.State;
         PhotoURL = command.PhotoURL;
-
+        ValidateBeforeUpdate();
         return this;
+    }
+
+    public void ValidateBeforeInsert()
+    {
+        if (string.IsNullOrEmpty(Name))
+            throw new ArgumentException("Name cannot be null or empty.");
+        else if (string.IsNullOrEmpty(Surname))
+            throw new ArgumentException("Surname cannot be null or empty.");
+        else if (string.IsNullOrEmpty(Email))
+            throw new ArgumentException("Email cannot be null or empty.");
+        else if (!System.Text.RegularExpressions.Regex.IsMatch(Email!, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            throw new ArgumentException("Email has not a valid format.");
+        else if (string.IsNullOrEmpty(Phone))
+            throw new ArgumentException("Phone cannot be null or empty");
+        else if (!System.Text.RegularExpressions.Regex.IsMatch(Phone, @"^\d{9}$"))
+            throw new ArgumentException("Phone has not a valid format.");
+    }
+
+    public void ValidateBeforeUpdate()
+    {
+        if (Id == 0)
+            throw new ArgumentException("ID cannot be zero.");
+        else if (string.IsNullOrEmpty(Name))
+            throw new ArgumentException("Name cannot be null or empty.");
+        else if (string.IsNullOrEmpty(Surname))
+            throw new ArgumentException("Surname cannot be null or empty.");
+        else if (string.IsNullOrEmpty(Email))
+            throw new ArgumentException("Email cannot be null or empty.");
+        else if (!System.Text.RegularExpressions.Regex.IsMatch(Email!, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            throw new ArgumentException("Email has not a valid format.");
+        else if (string.IsNullOrEmpty(Phone))
+            throw new ArgumentException("Phone cannot be null or empty");
+        else if (!System.Text.RegularExpressions.Regex.IsMatch(Phone, @"^\d{9}$"))
+            throw new ArgumentException("Phone has not a valid format.");
     }
 }

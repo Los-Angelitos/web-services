@@ -10,6 +10,7 @@ using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Roles;
 using SweetManagerIotWebService.API.Inventory.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Inventory.Domain.Model.Entities;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Entities;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Entities;
 using System.Data;
@@ -73,6 +74,8 @@ public partial class SweetManagerContext : DbContext
     public virtual DbSet<SupplyRequest> SupplyRequests { get; set; }
 
     public virtual DbSet<TypeRoom> TypeRooms { get; set; }
+
+    public virtual DbSet<Multimedia> Multimedias { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -317,6 +320,23 @@ public partial class SweetManagerContext : DbContext
             entity.HasOne(d => d.Owner).WithMany(p => p.Hotels)
                 .HasForeignKey(d => d.OwnerId)
                 .HasConstraintName("hotels_ibfk_1");
+        });
+
+        modelBuilder.Entity<Multimedia>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("multimedias");
+
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
+            entity.Property(e => e.HotelId).HasColumnName("hotelId");
+            entity.Property(e => e.Url).HasMaxLength(5000).HasColumnName("url");
+            entity.Property(e => e.Type).HasConversion<string>().HasColumnName("type");
+            entity.Property(e => e.Position).HasColumnName("position");
+
+            entity.HasOne(m => m.Hotel).WithMany(h => h.Multimedias)
+                .HasForeignKey(d => d.HotelId)
+                .HasConstraintName("multimedias_ibfk_1");
         });
 
         modelBuilder.Entity<Notification>(entity =>

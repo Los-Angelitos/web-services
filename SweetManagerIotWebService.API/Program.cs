@@ -259,7 +259,9 @@ builder.Services.AddScoped<IHotelQueryService, HotelQueryService>();
 builder.Services.AddScoped<IProviderCommandService, ProviderCommandService>();
 builder.Services.AddScoped<IProviderQueryService, ProviderQueryService>();
 builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
-
+builder.Services.AddScoped<IMultimediaRepository, MultimediaRepository>();
+builder.Services.AddScoped<IMultimediaCommandService, MultimediaCommandService>();
+builder.Services.AddScoped<IMultimediaQueryService, MultimediaQueryService>();
 
 // Shared Bounded context
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
