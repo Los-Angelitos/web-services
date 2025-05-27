@@ -75,6 +75,8 @@ public partial class SweetManagerContext : DbContext
 
     public virtual DbSet<TypeRoom> TypeRooms { get; set; }
 
+    public virtual DbSet<Multimedia> Multimedias { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Admin>(entity =>

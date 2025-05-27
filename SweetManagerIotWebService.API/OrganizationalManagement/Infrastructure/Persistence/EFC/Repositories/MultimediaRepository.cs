@@ -6,14 +6,16 @@ using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Reposi
 
 namespace SweetManagerIotWebService.API.OrganizationalManagement.Infrastructure.Persistence.EFC.Repositories
 {
-    public class MultimediaRepository(SweetManagerContext context) : BaseRepository<Multimedia>(context), 
+    public class MultimediaRepository(SweetManagerContext context) : BaseRepository<Multimedia>(context),
         IMultimediaRepository
     {
         public async Task<IEnumerable<Multimedia>> FindAllDetailsByHotelId(int hotelId)
-        => await Context.Set<Multimedia>().Where(m => m.HotelId.Equals(hotelId)).ToListAsync();
+        => await Context.Set<Multimedia>().Where(m => m.HotelId.Equals(hotelId) && 
+        m.Type == Domain.Model.ValueObjects.ETypeMultimedia.DETAIL).ToListAsync();
 
 
         public async Task<Multimedia?> FindMainByHotelId(int hotelId)
-        => await Context.Set<Multimedia>().Where(m => m.HotelId.Equals(hotelId)).FirstOrDefaultAsync();
+        => await Context.Set<Multimedia>().Where(m => m.HotelId.Equals(hotelId) && 
+        m.Type == Domain.Model.ValueObjects.ETypeMultimedia.MAIN).FirstOrDefaultAsync();
     }
 }

@@ -24,7 +24,9 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST
 
                 var response = await multimediaCommandService.Handle(multimediaCommand);
 
-                return StatusCode(StatusCodes.Status201Created, response);
+                var responseResource = MultimediaResourceFromEntityAssembler.ToResourceFromEntity(response!);
+
+                return StatusCode(StatusCodes.Status201Created, responseResource);
             }
             catch (Exception ex)
             {
@@ -40,6 +42,8 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST
                 var multimediaCommand = UpdateMultimediaCommandFromResourceAssembler.ToCommandFromResource(resource);
 
                 var response = await multimediaCommandService.Handle(multimediaCommand);
+
+                var responseResource = MultimediaResourceFromEntityAssembler.ToResourceFromEntity(response!);
 
                 return Ok(response);
             }
