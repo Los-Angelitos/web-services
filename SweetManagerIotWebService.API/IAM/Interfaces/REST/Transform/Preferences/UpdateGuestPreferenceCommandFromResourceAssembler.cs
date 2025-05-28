@@ -5,9 +5,9 @@ namespace SweetManagerIotWebService.API.IAM.Interfaces.REST.Transform.Preference
 {
     public static class UpdateGuestPreferenceCommandFromResourceAssembler
     {
-        public static UpdateGuestPreferenceCommand ToCommandFromResource(UpdateGuestPreferenceResource resource)
+        public static UpdateGuestPreferenceCommand ToCommandFromResource(UpdateGuestPreferenceResource resource, int id)
         {
-            return new UpdateGuestPreferenceCommand(resource.Id, resource.GuestId, resource.Temperature);
+            return new UpdateGuestPreferenceCommand(id,resource.GuestId, resource.Temperature);
         }
     }
 }

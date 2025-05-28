@@ -31,9 +31,10 @@ namespace SweetManagerIotWebService.API.IAM.Application.Internal.CommandServices
         {
             try
             {
-                var entity = new GuestPreference(command);
+                var entity = await guestPreferenceRepository.FindByIdAsync(command.Id) ?? throw new Exception("The guest preference with the given id, doesn't exists.");
+                entity.Update(command);
 
-                await guestPreferenceRepository.AddAsync(entity);
+                guestPreferenceRepository.Update(entity);
 
                 await unitOfWork.CommitAsync();
 
