@@ -68,6 +68,7 @@ using SweetManagerIotWebService.API.Communication.Application.Internal.QueryServ
 using SweetManagerIotWebService.API.Communication.Domain.Repositories;
 using SweetManagerIotWebService.API.Communication.Domain.Services;
 using SweetManagerIotWebService.API.Communication.Infrastructure.Persistence.EFC.Repositories;
+using SweetManagerIotWebService.API.Reservations.Domain.Services.SmokeSensor;
 using SweetManagerIotWebService.API.Reservations.Domain.Services.Thermostat;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -215,6 +216,10 @@ builder.Services.AddScoped<IBookingQueryServices, BookingQueryService>();
 builder.Services.AddScoped<IThermostatRepositoy, ThermostatRepository>();
 builder.Services.AddScoped<IThermostatCommandService, ThermostatCommandService>();
 builder.Services.AddScoped<IThermostatQueryServices, ThermostatQueryService>();
+
+builder.Services.AddScoped<ISmokeSensorRepositoy, SmokeSensorRepository>();
+builder.Services.AddScoped<ISmokeSensorCommandService, SmokeSensorCommandService>();
+builder.Services.AddScoped<ISmokeSensorQueryServices, SmokeSensorQueryService>();
 
 
 
