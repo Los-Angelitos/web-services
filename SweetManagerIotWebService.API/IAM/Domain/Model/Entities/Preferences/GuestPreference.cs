@@ -19,13 +19,13 @@ public partial class GuestPreference
 
     public GuestPreference() { }
 
-    public GuestPreference(CreateGuestPreferenceCommand command)
+    public void Update(UpdateGuestPreferenceCommand command)
     {
         GuestId = command.GuestId;
         Temperature = command.Temperature;
     }
 
-    public GuestPreference(UpdateGuestPreferenceCommand command)
+    public GuestPreference(CreateGuestPreferenceCommand command)
     {
         GuestId = command.GuestId;
         Temperature = command.Temperature;
