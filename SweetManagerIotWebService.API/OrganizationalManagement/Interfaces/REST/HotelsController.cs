@@ -41,6 +41,7 @@ public class HotelsController(IHotelCommandService hotelCommandService, IHotelQu
     }
 
     [HttpGet("{hotelId:int}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetHotelById(int hotelId)
     {
         try
@@ -58,6 +59,7 @@ public class HotelsController(IHotelCommandService hotelCommandService, IHotelQu
     }
     
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAllHotels()
     {
         try

@@ -54,6 +54,7 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST
         }
 
         [HttpGet("details")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllDetails([FromQuery] int hotelId)
         {
             try
@@ -71,6 +72,7 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST
         }
 
         [HttpGet("main")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetMain([FromQuery] int hotelId)
         {
             try
