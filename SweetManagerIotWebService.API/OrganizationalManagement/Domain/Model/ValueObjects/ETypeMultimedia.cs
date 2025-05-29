@@ -3,6 +3,7 @@
     public enum ETypeMultimedia
     {
         MAIN,
-        DETAIL
+        DETAIL,
+        LOGO
     }
 }
