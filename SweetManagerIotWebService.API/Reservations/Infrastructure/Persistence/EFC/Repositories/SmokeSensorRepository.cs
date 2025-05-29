@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.Reservations.Domain.Model.Commands.SmokeSensor;
 using SweetManagerIotWebService.API.Reservations.Domain.Repositories;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Repositories;
@@ -54,14 +55,21 @@ public class SmokeSensorRepository(SweetManagerContext context) : BaseRepository
 
 
     public async Task<bool> UpdateSmokeSensor(int id, int? roomId, string? ipAddress, string? macAddress,
-        double? temperature, string? state,
-        DateTime? lastUpdate)
+        double? temperature, string? state, DateTime? lastUpdate)
     {
         var smokeSensor = await Context.Set<SmokeSensor>().FindAsync(id);
         if (smokeSensor == null)
             return false;
-        smokeSensor = new SmokeSensor(id, roomId, temperature, ipAddress, macAddress, state, lastUpdate);
+
+        smokeSensor.RoomId = roomId;
+        smokeSensor.IpAddress = ipAddress;
+        smokeSensor.MacAddress = macAddress;
+        smokeSensor.LastAnalogicValue = temperature;
+        smokeSensor.State = state;
+        smokeSensor.LastAlertTime = lastUpdate;
+
         await Context.SaveChangesAsync();
         return true;
     }
+
 }
