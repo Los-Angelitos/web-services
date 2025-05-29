@@ -609,6 +609,8 @@ public partial class SweetManagerContext : DbContext
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity.ToTable("thermostats");
+            
+            entity.HasIndex(e => e.RoomId, "room_id");
 
             entity.Property(t => t.Id).HasColumnName("id");
             entity.Property(t => t.Temperature);
@@ -634,9 +636,10 @@ public partial class SweetManagerContext : DbContext
         
         modelBuilder.Entity<SmokeSensor>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
+            entity.HasKey(t => t.Id).HasName("PRIMARY");
 
             entity.ToTable("smoke_sensors");
+            entity.HasIndex(t => t.RoomId, "room_id");
 
             entity.Property(t => t.Id).HasColumnName("id");
             entity.Property(t => t.LastAnalogicValue)
@@ -651,7 +654,6 @@ public partial class SweetManagerContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("state");
             entity.Property(t => t.LastAlertTime)
-                .HasColumnType("date")
                 .HasColumnName("last_alert_time");
             entity.Property(t => t.RoomId).HasColumnName("room_id");
             
