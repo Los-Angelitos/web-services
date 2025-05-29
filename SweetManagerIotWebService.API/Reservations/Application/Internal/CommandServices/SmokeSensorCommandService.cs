@@ -74,6 +74,8 @@ public class SmokeSensorCommandService(ISmokeSensorRepositoy SmokeSensorReposito
         var smokesensor = new SmokeSensor(command);
         await _SmokeSensorRepositoy.UpdateSmokeSensor(smokesensor.Id, smokesensor.RoomId, smokesensor.IpAddress, smokesensor.MacAddress, smokesensor.LastAnalogicValue, smokesensor.State, smokesensor.LastAlertTime);
         await _unitOfWork.CommitAsync();
+        
+        
 
         return true;
     }
