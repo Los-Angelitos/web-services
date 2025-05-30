@@ -20,8 +20,9 @@ public class TypeRoomController(ITypeRoomQueryService typeRoomQueryService, ITyp
         {
             var command = CreateTypeRoomCommandFromResourceAssembler.CreateTypeRoomCommandFromResource(resource);
             var result = await typeRoomCommandService.Handle(command);
+            var resultResource = TypeRoomResourceFromEntityAssembler.ToResourceFromEntity(result!);
 
-            return Ok("Type room created successfully.");
+            return Ok(resultResource);
         }
         catch (ArgumentException ex)
         {
