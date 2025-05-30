@@ -1,5 +1,6 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
+using SweetManagerIotWebService.API.Inventory.Interfaces.REST.Resources;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Queries;
 using SweetManagerIotWebService.API.Reservations.Domain.Services.Room;
 using SweetManagerIotWebService.API.Reservations.Interfaces.REST.Resources.Room;
@@ -12,6 +13,26 @@ namespace SweetManagerIotWebService.API.Reservations.Interfaces.REST;
 [Produces(MediaTypeNames.Application.Json)]
 public class RoomController(IRoomCommandService roomCommandService, IRoomQueryService roomQueryService) : ControllerBase
 {
+    [HttpPost("set-up")]
+    public async Task<IActionResult> BulkRoomsByTypeRoom(BulkRoomsResource resource)
+    {
+        try
+        {
+            var bulkRoomsCommand = BulkRoomsCommandFromResourceAssembler.ToCommandFromResource(resource);
+
+            var result = await roomCommandService.Handle(bulkRoomsCommand);
+
+            if (result)
+                return Ok();
+            else
+                return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
     [HttpPost("create-room")]
     public async Task<IActionResult> CreateRoom([FromBody] CreateRoomResource resource)
     {

@@ -11,9 +11,8 @@ public class TypeRoomCommandServices(ITypeRoomRepository typeRoomRepository, IUn
     IUnitOfWork _unitOfWork = unitOfWork;
     ITypeRoomRepository _roomRepository = typeRoomRepository;
     
-    public async Task<bool> Handle(CreateTypeRoomCommand command)
+    public async Task<TypeRoom?> Handle(CreateTypeRoomCommand command)
     {
-        
         if (string.IsNullOrWhiteSpace(command.Description))
             throw new ArgumentException("Description is required.");
         if (command.Price <= 0)
@@ -24,6 +23,6 @@ public class TypeRoomCommandServices(ITypeRoomRepository typeRoomRepository, IUn
         await _roomRepository.AddAsync(typeRoom);
         await _unitOfWork.CommitAsync();
 
-        return true;
+        return typeRoom;
     }
 }
