@@ -8,7 +8,7 @@ using SweetManagerIotWebService.API.Reservations.Interfaces.REST.Transform.Therm
 
 namespace SweetManagerIotWebService.API.Reservations.Interfaces.REST;
 
-[Route("api/[controller]")]
+[Route("api/v1/[controller]")]
 [ApiController]
 [Produces(MediaTypeNames.Application.Json)]
 public class ThermostatController(IThermostatCommandService thermostatCommandService, IThermostatQueryServices thermostatQueryServices) : ControllerBase
