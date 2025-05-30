@@ -10,10 +10,10 @@ using System.Data;
 
 namespace SweetManagerIotWebService.API.Reservations.Application.Internal.CommandServices;
 
-public class RoomCommandService(IRoomRepository roomRepository, IUnitOfWork unitOfWork): IRoomCommandService
+public class RoomCommandService(IRoomRepository roomRepository, IUnitOfWork unitOfWork, SweetManagerContext context): IRoomCommandService
 {
-    
-     public async Task<bool> Handle(CreateRoomCommand command)
+
+    public async Task<bool> Handle(CreateRoomCommand command)
      {
          if (command.TypeRoomId is null)
              throw new ArgumentException("TypeRoomId is required.");
@@ -45,20 +45,17 @@ public class RoomCommandService(IRoomRepository roomRepository, IUnitOfWork unit
 
     public async Task<bool> Handle(BulkRoomsCommand command)
     {
-        SweetManagerContext sweetManagerContext = new();
-
         var rooms = new List<Room>();
 
         int count = command.Count;
 
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
-            rooms.Add(new Room(new CreateRoomCommand(command.RoomTypeId, command.HotelId, "ACTIVE")));
+            var cmd = new CreateRoomCommand(command.RoomTypeId, command.HotelId, "ACTIVE");
+            rooms.Add(new Room(cmd)); // No uses constructor que setea Id
         }
 
-        // Bulk copy
-        await sweetManagerContext.Rooms.AddRangeAsync(rooms);
-
+        await context.Rooms.AddRangeAsync(rooms);
         await unitOfWork.CommitAsync();
 
         return true;
