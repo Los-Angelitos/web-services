@@ -6,4 +6,5 @@ public record HotelResource(
     string Description,
     string Email,
     string Address,
-    string Phone);
+    string Phone,
+    int OwnerId);

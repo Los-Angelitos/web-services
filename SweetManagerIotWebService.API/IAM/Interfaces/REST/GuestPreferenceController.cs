@@ -47,7 +47,7 @@ namespace SweetManagerIotWebService.API.IAM.Interfaces.REST
                     return BadRequest("There is no preference for the given guest id");
 
                 var guestPreferenceResource = GuestPreferenceResourceFromEntityAssembler.ToResourceFromEntity(guestPreference);
-
+                 
                 return Ok(guestPreferenceResource);
             }
             catch(Exception ex)
