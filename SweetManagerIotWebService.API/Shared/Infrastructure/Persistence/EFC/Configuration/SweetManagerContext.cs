@@ -74,6 +74,10 @@ public partial class SweetManagerContext : DbContext
     public virtual DbSet<SupplyRequest> SupplyRequests { get; set; }
 
     public virtual DbSet<TypeRoom> TypeRooms { get; set; }
+    
+    public virtual DbSet<Thermostat> Thermostats { get; set; }
+    
+    public virtual DbSet<SmokeSensor> SmokeSensors { get; set; }
 
     public virtual DbSet<Multimedia> Multimedias { get; set; }
 
@@ -605,6 +609,8 @@ public partial class SweetManagerContext : DbContext
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
             entity.ToTable("thermostats");
+            
+            entity.HasIndex(e => e.RoomId, "room_id");
 
             entity.Property(t => t.Id).HasColumnName("id");
             entity.Property(t => t.Temperature);
@@ -626,6 +632,35 @@ public partial class SweetManagerContext : DbContext
             entity.HasOne(d => d.Room).WithMany(p => p.Thermostats)
                 .HasForeignKey(d => d.RoomId)
                 .HasConstraintName("thermostats_ibfk_1");
+        });
+        
+        modelBuilder.Entity<SmokeSensor>(entity =>
+        {
+            entity.HasKey(t => t.Id).HasName("PRIMARY");
+
+            entity.ToTable("smoke_sensors");
+            entity.HasIndex(t => t.RoomId, "room_id");
+
+            entity.Property(t => t.Id).HasColumnName("id");
+            entity.Property(t => t.LastAnalogicValue)
+                .HasColumnName("last_analogic_value");
+            entity.Property(t => t.IpAddress)
+                .HasMaxLength(100)
+                .HasColumnName("ip_address");
+            entity.Property(t => t.MacAddress)
+                .HasMaxLength(100)
+                .HasColumnName("mac_address");
+            entity.Property(t => t.State)
+                .HasMaxLength(50)
+                .HasColumnName("state");
+            entity.Property(t => t.LastAlertTime)
+                .HasColumnName("last_alert_time");
+            entity.Property(t => t.RoomId).HasColumnName("room_id");
+            
+            
+            entity.HasOne(d => d.Room).WithMany(p => p.SmokeSensors)
+                .HasForeignKey(d => d.RoomId)
+                .HasConstraintName("smoke_sensors_ibfk_1");
         });
 
         modelBuilder.Entity<TypeRoom>(entity =>

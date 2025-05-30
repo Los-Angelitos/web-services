@@ -16,8 +16,10 @@ public partial class Room
     
     [JsonIgnore]
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
-    
+
     public virtual ICollection<Thermostat> Thermostats { get; set; } = new List<Thermostat>();
+    
+    public virtual ICollection<SmokeSensor> SmokeSensors { get; set; } = new List<SmokeSensor>();
 
 
     public virtual Hotel? Hotel { get; set; }
