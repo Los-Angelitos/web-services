@@ -303,7 +303,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.HasIndex(e => e.OwnerId, "owner_id");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
             entity.Property(e => e.Address)
                 .HasMaxLength(500)
                 .HasColumnName("address");
@@ -349,7 +349,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.ToTable("notifications");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
             entity.Property(e => e.Content)
                 .HasMaxLength(5000)
                 .HasColumnName("content");
@@ -469,7 +469,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.ToTable("providers");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
                 .HasColumnName("email");
@@ -490,7 +490,7 @@ public partial class SweetManagerContext : DbContext
 
 
             entity.ToTable("roles");
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .HasColumnName("name");
@@ -506,12 +506,11 @@ public partial class SweetManagerContext : DbContext
 
             entity.HasIndex(e => e.TypeRoomId, "type_room_id");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
             entity.Property(e => e.HotelId).HasColumnName("hotel_id");
             entity.Property(e => e.State)
-                .HasDefaultValueSql("'available'")
-                .HasColumnType("enum('available','occupied','maintenance')")
                 .HasColumnName("state");
+
             entity.Property(e => e.TypeRoomId).HasColumnName("type_room_id");
 
             entity.HasOne(d => d.Hotel).WithMany(p => p.Rooms)
@@ -529,7 +528,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.ToTable("subscriptions");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
             entity.Property(e => e.Content)
                 .HasMaxLength(200)
                 .HasColumnName("content");
@@ -554,7 +553,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.HasIndex(e => e.ProviderId, "provider_id");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
             entity.Property(e => e.HotelId).HasColumnName("hotel_id");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
@@ -587,7 +586,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.HasIndex(e => e.SupplyId, "supply_id");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
             entity.Property(e => e.Amount)
                 .HasPrecision(10)
                 .HasColumnName("amount");
@@ -612,7 +611,7 @@ public partial class SweetManagerContext : DbContext
             
             entity.HasIndex(e => e.RoomId, "room_id");
 
-            entity.Property(t => t.Id).HasColumnName("id");
+            entity.Property(t => t.Id).HasColumnName("id").ValueGeneratedOnAdd();
             entity.Property(t => t.Temperature);
             entity.Property(t => t.IpAddress)
                 .HasMaxLength(100)
@@ -669,7 +668,7 @@ public partial class SweetManagerContext : DbContext
 
             entity.ToTable("type_rooms");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
             entity.Property(e => e.Description)
                 .HasMaxLength(500)
                 .HasColumnName("description");
