@@ -9,9 +9,10 @@ namespace SweetManagerIotWebService.API.Commerce.Infrastructure.Persistence.EFC.
 
 public class SubscriptionRepository(SweetManagerContext context) : BaseRepository<Subscription>(context), ISubscriptionRepository
 {
-    public async Task<IEnumerable<Subscription>> FindByNameAsync(ESubscriptionTypes name)
+    public async Task<Subscription?> FindByNameAsync(ESubscriptionTypes name)
     {
-        return await Context.Set<Subscription>().Where(subscription => subscription.Name.Equals(name)).ToListAsync();
+        return await Context.Set<Subscription>()
+            .FirstOrDefaultAsync(subscription => subscription.Name == name);
     }
 
     public async Task<IEnumerable<Subscription>> FindByStatusAsync(EStates status)

@@ -1,5 +1,6 @@
 ﻿using SweetManagerIotWebService.API.Commerce.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Commerce.Domain.Model.Commands;
+using SweetManagerIotWebService.API.Commerce.Domain.Model.ValueObjects;
 using SweetManagerIotWebService.API.Commerce.Domain.Repositories;
 using SweetManagerIotWebService.API.Commerce.Domain.Services;
 using SweetManagerIotWebService.API.Shared.Domain.Repositories;
@@ -49,4 +50,28 @@ public class SubscriptionCommandService(
             return null;
         }
     }
+
+    public async Task<bool> Handle(SeedSubscriptionsCommand command)
+    {
+        foreach (var sub in Enum.GetValues(typeof(ESubscriptionTypes)))
+        {
+            var subscriptionType = (ESubscriptionTypes)sub;
+
+            if (await subscriptionRepository.FindByNameAsync(subscriptionType) is null)
+            {
+                var description = SubscriptionTypeMetadata.GetDescription(subscriptionType);
+                var price = SubscriptionTypeMetadata.GetPrice(subscriptionType);
+
+                await subscriptionRepository.AddAsync(new Subscription(
+                    subscriptionType,
+                    description,
+                    price,
+                    EStates.Active
+                ));
+            }
+        }
+        await unitOfWork.CommitAsync();
+        return true;
+    }
+
 }

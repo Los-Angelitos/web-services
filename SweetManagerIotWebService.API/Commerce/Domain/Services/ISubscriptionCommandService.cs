@@ -7,4 +7,5 @@ public interface ISubscriptionCommandService
 {
     Task<Subscription?> Handle(CreateSubscriptionCommand command);
     Task<Subscription?> Handle(UpdateSubscriptionCommand command);
+    Task<bool> Handle(SeedSubscriptionsCommand command);
 }
