@@ -40,7 +40,7 @@ namespace SweetManagerIotWebService.API.IAM.Infrastructure.Persistence.EFC.Repos
             join ho in Context.Set<Hotel>().ToList()
                 on ow.Id equals ho.OwnerId
             where ow.Id.Equals(id)
-            select ow
+            select ho
          ).FirstOrDefault()?.Id);
     }
 }
