@@ -71,7 +71,7 @@ namespace SweetManagerIotWebService.API.IAM.Application.Internal.CommandServices
                 if (!hashingService.VerifyHash(command.Password, userCredential!.Code[..24], userCredential!.Code[24..]))
                     throw new InvalidPasswordException();
 
-                var hotel = await adminRepository.FindHotelIdByIdAsync(user.Id);
+                var hotel = user.HotelId;
 
                 hotel ??= 0;
 

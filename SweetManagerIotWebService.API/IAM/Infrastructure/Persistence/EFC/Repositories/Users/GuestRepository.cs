@@ -55,7 +55,7 @@ namespace SweetManagerIotWebService.API.IAM.Infrastructure.Persistence.EFC.Repos
                 on ro.HotelId equals ho.Id
             where gu.Id.Equals(id)
 
-            select gu
+            select ho
          ).FirstOrDefault()?.Id);
     }
 }
