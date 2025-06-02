@@ -92,5 +92,27 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST
                 return BadRequest(ex.Message);
             }
         }
+        
+        [HttpGet("logo")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetLogo([FromQuery] int hotel)
+        {
+            try 
+            {
+                var multimedia = await multimediaQueryService.Handle(new GetLogoMultimediaByHotelIdQuery(hotel));
+                MultimediaResource multimediaResource;
+                if (multimedia != null)
+                {
+                    multimediaResource = MultimediaResourceFromEntityAssembler.ToResourceFromEntity(multimedia);
+
+                    return Ok(multimediaResource);
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
