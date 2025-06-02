@@ -8,5 +8,7 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Domain.Reposito
         Task<IEnumerable<Multimedia>> FindAllDetailsByHotelId(int hotelId);
 
         Task<Multimedia?> FindMainByHotelId(int hotelId);
+        
+        Task<Multimedia?> FindLogoByHotelId(int hotelId);
     }
 }
