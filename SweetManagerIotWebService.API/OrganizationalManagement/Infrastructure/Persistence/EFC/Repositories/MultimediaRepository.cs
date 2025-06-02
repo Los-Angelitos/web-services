@@ -17,5 +17,9 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Infrastructure.
         public async Task<Multimedia?> FindMainByHotelId(int hotelId)
         => await Context.Set<Multimedia>().Where(m => m.HotelId.Equals(hotelId) && 
         m.Type == Domain.Model.ValueObjects.ETypeMultimedia.MAIN).FirstOrDefaultAsync();
+        
+        public async Task<Multimedia?> FindLogoByHotelId(int hotelId)
+        => await Context.Set<Multimedia>().Where(m => m.HotelId.Equals(hotelId) && 
+        m.Type == Domain.Model.ValueObjects.ETypeMultimedia.LOGO).FirstOrDefaultAsync();
     }
 }

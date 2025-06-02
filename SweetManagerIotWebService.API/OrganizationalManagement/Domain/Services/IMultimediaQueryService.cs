@@ -8,5 +8,7 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Domain.Services
         Task<IEnumerable<Multimedia>> Handle(GetAllDetailMultimediaByHotelIdQuery query);
 
         Task<Multimedia?> Handle(GetMainMultimediaByHotelIdQuery query);
+
+        Task<Multimedia?> Handle(GetLogoMultimediaByHotelIdQuery query);
     }
 }
