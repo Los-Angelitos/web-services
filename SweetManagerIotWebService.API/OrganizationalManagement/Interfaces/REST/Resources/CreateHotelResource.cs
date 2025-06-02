@@ -8,4 +8,6 @@ public record CreateHotelResource(
     string Description,
     string Email,
     string Address,
-    string Phone);
+    string Phone,
+    string Category
+    );

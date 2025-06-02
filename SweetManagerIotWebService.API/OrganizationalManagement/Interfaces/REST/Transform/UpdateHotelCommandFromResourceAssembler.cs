@@ -7,6 +7,6 @@ public class UpdateHotelCommandFromResourceAssembler
 {
     public static UpdateHotelCommand ToCommandFromResource(int id, UpdateHotelResource resource)
     {
-        return new UpdateHotelCommand(id, resource.Description, resource.Email, resource.Address, resource.Phone, resource.OwnerId);
+        return new UpdateHotelCommand(id, resource.Description, resource.Email, resource.Address, resource.Phone, resource.OwnerId, resource.Category);
     }
 }

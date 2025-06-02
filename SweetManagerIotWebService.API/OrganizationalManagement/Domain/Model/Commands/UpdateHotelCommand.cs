@@ -6,4 +6,5 @@ public record UpdateHotelCommand(
     string Email,
     string Address,
     string Phone,
-    int OwnerId);
+    int OwnerId,
+    string Category);

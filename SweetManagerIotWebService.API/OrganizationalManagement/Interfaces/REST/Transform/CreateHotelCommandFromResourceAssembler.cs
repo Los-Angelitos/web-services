@@ -9,6 +9,6 @@ public class CreateHotelCommandFromResourceAssembler
     public static CreateHotelCommand ToCommandFromResource(CreateHotelResource resource)
     {
         CreateHotelResourceValidator.Validate(resource);
-        return new CreateHotelCommand(resource.OwnerId, resource.Name, resource.Description, resource.Email, resource.Address, resource.Phone);
+        return new CreateHotelCommand(resource.OwnerId, resource.Name, resource.Description, resource.Email, resource.Address, resource.Phone, resource.Category);
     }
 }

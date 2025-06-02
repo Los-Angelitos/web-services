@@ -26,5 +26,8 @@ public static class CreateHotelResourceValidator
 
         if (!System.Text.RegularExpressions.Regex.IsMatch(resource.Phone, @"^\d{9}$"))
             throw new ArgumentException("Phone is not valid.");
+        
+        if(resource.Category != "FEATURED" && resource.Category != "NEAR_THE_LAKE" && resource.Category != "WITH_A_POOL" && resource.Category != "NEAR_THE_BEACH" && resource.Category != "RURAL_HOTEL" && resource.Category != "SUITE")
+            throw new ArgumentException("Category is not valid. Valid categories are: FEATURED, NEAR_THE_LAKE, WITH_A_POOL, NEAR_THE_BEACH, RURAL_HOTEL, SUITE.");
     }
 }
