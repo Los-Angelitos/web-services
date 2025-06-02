@@ -308,7 +308,7 @@ public partial class SweetManagerContext : DbContext
                 .HasMaxLength(500)
                 .HasColumnName("address");
             entity.Property(e => e.Description)
-                .HasMaxLength(100)
+                .HasMaxLength(5000)
                 .HasColumnName("description");
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
@@ -320,6 +320,7 @@ public partial class SweetManagerContext : DbContext
             entity.Property(e => e.Phone)
                 .HasMaxLength(15)
                 .HasColumnName("phone");
+            entity.Property(e => e.Category).HasConversion<string>().HasColumnName("category");
 
             entity.HasOne(d => d.Owner).WithMany(p => p.Hotels)
                 .HasForeignKey(d => d.OwnerId)

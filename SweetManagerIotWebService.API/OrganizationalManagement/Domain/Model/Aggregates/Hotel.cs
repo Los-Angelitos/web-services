@@ -6,6 +6,7 @@ using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Inventory.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Commands;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Entities;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.ValueObjects;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
 
 namespace SweetManagerIotWebService.API;
@@ -25,6 +26,8 @@ public partial class Hotel
     public string? Address { get; set; }
 
     public string? Phone { get; set; }
+    
+    public ECategory? Category { get; set; }
 
     public virtual Owner? Owner { get; set; }
 
@@ -43,13 +46,14 @@ public partial class Hotel
         // asd
     }
     
-    public Hotel(string name, string description, string email, string address, string phone)
+    public Hotel(string name, string description, string email, string address, string phone, string category)
     {
         Name = name;
         Description = description;
         Email = email;
         Address = address;
         Phone = phone;
+        Category = Enum.Parse<ECategory>(category);
     }
     public Hotel(CreateHotelCommand command)
     {
@@ -59,6 +63,8 @@ public partial class Hotel
         Email = command.Email;
         Address = command.Address;
         Phone = command.Phone;
+        Category = Enum.Parse<ECategory>(command.Category);
+
         
         /*
         // rooms from command, fill the collection
