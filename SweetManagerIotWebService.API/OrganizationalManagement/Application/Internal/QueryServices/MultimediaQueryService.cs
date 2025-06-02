@@ -13,5 +13,8 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Application.Int
         public async Task<Multimedia?> Handle(GetMainMultimediaByHotelIdQuery query)
         => await multimediaRepository.FindMainByHotelId(query.HotelId);
 
+        public async Task<Multimedia?> Handle(GetLogoMultimediaByHotelIdQuery query)
+            => await multimediaRepository.FindLogoByHotelId(query.HotelId);
+
     }
 }
