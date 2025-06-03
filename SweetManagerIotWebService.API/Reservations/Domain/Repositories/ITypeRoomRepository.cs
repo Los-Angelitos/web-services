@@ -7,5 +7,4 @@ public interface ITypeRoomRepository : IBaseRepository<TypeRoom>
 {
     Task <IEnumerable<TypeRoom>> FindAllByHotelIdAsync(int? hotelId);
     
-    
 }
