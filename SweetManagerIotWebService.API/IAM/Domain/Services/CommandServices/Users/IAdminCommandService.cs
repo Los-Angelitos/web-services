@@ -11,5 +11,7 @@ namespace SweetManagerIotWebService.API.IAM.Domain.Services.CommandServices.User
         Task<Admin?> Handle(UpdateUserCommand command);
 
         Task<dynamic?> Handle(SignInUserCommand command);
+
+        Task<bool> Handle(UpdateAdminHotelIdCommand command);
     }
 }
