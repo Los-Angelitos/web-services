@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SweetManagerIotWebService.API.Communication.Domain.Model.Commands;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
 
 namespace SweetManagerIotWebService.API.Communication.Domain.Model.Aggregates;
 
