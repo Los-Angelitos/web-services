@@ -61,4 +61,14 @@ public class TypeRoomController(ITypeRoomQueryService typeRoomQueryService, ITyp
         var roomResources = typeRooms.Select(TypeRoomResourceFromEntityAssembler.ToResourceFromEntity);
         return Ok(roomResources);
     }
+    
+    [HttpGet("get-minimum-price-type-room-by-hotel-id")]
+    public async Task<IActionResult> GetMinimumPriceTypeRoomByHotelId([FromQuery] int hotelId)
+    {
+        var minimumPrice = await typeRoomQueryService.Handle(new GetMinimumPriceTypeRoomByHotelId(hotelId));
+        if (minimumPrice is null)
+            return BadRequest();
+
+        return Ok(new { minimumPrice });
+    }
 }
