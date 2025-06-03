@@ -2,6 +2,7 @@
 using SweetManagerIotWebService.API.Commerce.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.IAM.Domain.Repositories.Users;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Repositories;

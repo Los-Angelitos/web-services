@@ -1,4 +1,5 @@
-﻿using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Queries;
+﻿using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Queries;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Repositories;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Services;
 
