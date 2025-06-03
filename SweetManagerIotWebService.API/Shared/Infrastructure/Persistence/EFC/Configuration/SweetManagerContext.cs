@@ -118,13 +118,17 @@ public partial class SweetManagerContext : DbContext
             entity.HasIndex(e => e.HotelId, "hotel_id");
             entity.Property(e => e.HotelId).HasColumnName("hotel_id");
 
+            entity.HasOne(d => d.Hotel).WithMany(p => p.Admins)
+                .HasForeignKey(d => d.HotelId)
+                .HasConstraintName("admins_ibfk_1");
+
             entity.HasOne(d => d.Role).WithMany(p => p.Admins)
                 .HasForeignKey(d => d.RoleId)
-                .HasConstraintName("admins_ibfk_1");
+                .HasConstraintName("admins_ibfk_2");
 
             entity.HasOne(d => d.Hotel).WithMany(p => p.Admins)
                 .HasForeignKey(d => d.HotelId)
-                .HasConstraintName("admins_ibfk_2");
+                .HasConstraintName("admins_ibfk_3");
         });
 
         modelBuilder.Entity<AdminCredential>(entity =>
@@ -483,6 +487,13 @@ public partial class SweetManagerContext : DbContext
             entity.Property(e => e.State)
                 .HasMaxLength(50)
                 .HasColumnName("state");
+            entity.HasIndex(e => e.HotelId, "hotel_id");
+            entity.Property(e => e.HotelId).HasColumnName("hotel_id");
+
+            entity.HasOne(d => d.Hotel).WithMany(h => h.Providers)
+                .HasForeignKey(d => d.HotelId)
+                .HasConstraintName("providers_ibfk_1");
+
         });
 
         modelBuilder.Entity<Role>(entity =>

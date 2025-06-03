@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using SweetManagerIotWebService.API.Inventory.Domain.Model.Aggregates;
+﻿using SweetManagerIotWebService.API.Inventory.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Commands;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.ValueObjects;
 
@@ -18,8 +16,12 @@ public partial class Provider
 
     public State? State { get; set; }
 
+    public int HotelId { get; set; }
+
     public virtual ICollection<Supply> Supplies { get; set; } = new List<Supply>();
-    
+
+    public virtual Hotel Hotel { get; set; } = null!;
+
     public Provider() {}
 
     public Provider(string name, string email, string phone, string state)

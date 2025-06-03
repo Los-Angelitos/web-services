@@ -247,5 +247,26 @@ namespace SweetManagerIotWebService.API.IAM.Interfaces.REST
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut("admins/hotel/{id}")]
+        [Authorize]
+        public async Task<IActionResult> AssignAdminToHotel([FromBody] UpdateAdminHotelIdResource resource, int id)
+        {
+            try
+            {
+                var updateAdminHotelIdCommand = UpdateAdminHotelIdFromResourceAssembler.ToCommandFromResource(resource, id);
+
+                var result = await adminCommandService.Handle(updateAdminHotelIdCommand);
+
+                if (result)
+                    return Ok();
+                else
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Commands;
+﻿using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Commands;
 
 namespace SweetManagerIotWebService.API.OrganizationalManagement.Domain.Services;
 

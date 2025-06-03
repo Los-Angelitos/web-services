@@ -5,6 +5,7 @@ using SweetManagerIotWebService.API.Commerce.Domain.Model.Entities;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Commands.Authentication;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Credentials;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Entities.Roles;
+using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
 
 namespace SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
 

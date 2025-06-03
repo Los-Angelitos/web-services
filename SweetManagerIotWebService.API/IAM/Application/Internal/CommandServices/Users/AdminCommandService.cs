@@ -94,5 +94,17 @@ namespace SweetManagerIotWebService.API.IAM.Application.Internal.CommandServices
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<bool> Handle(UpdateAdminHotelIdCommand command)
+        {
+            if (await adminRepository.FindByIdAsync(command.Id) is null)
+                throw new Exception("Any admin exists with the given id.");
+
+            var result = await adminRepository.ExecuteUpdateAdminHotelIdAsync(command.Id, command.HotelId);
+
+            await unitOfWork.CommitAsync();
+
+            return result;
+        }
     }
 }

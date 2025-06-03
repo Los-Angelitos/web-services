@@ -1,4 +1,5 @@
-﻿using SweetManagerIotWebService.API.Shared.Domain.Repositories;
+﻿using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.Shared.Domain.Repositories;
 
 namespace SweetManagerIotWebService.API.OrganizationalManagement.Domain.Repositories;
 

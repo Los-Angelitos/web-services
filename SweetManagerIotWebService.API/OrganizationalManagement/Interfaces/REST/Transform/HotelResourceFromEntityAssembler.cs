@@ -1,4 +1,5 @@
-﻿using SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST.Resources;
+﻿using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
+using SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST.Resources;
 
 namespace SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST.Transform;
 

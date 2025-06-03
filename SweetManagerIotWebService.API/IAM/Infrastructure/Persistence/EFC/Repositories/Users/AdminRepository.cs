@@ -8,6 +8,10 @@ namespace SweetManagerIotWebService.API.IAM.Infrastructure.Persistence.EFC.Repos
 {
     public class AdminRepository(SweetManagerContext context) : BaseRepository<Admin>(context), IAdminRepository
     {
+        public async Task<bool> ExecuteUpdateAdminHotelIdAsync(int id, int hotelId)
+         => await Context.Set<Admin>().Where(a => a.Id.Equals(id))
+            .ExecuteUpdateAsync(ad => ad.SetProperty(a => a.HotelId, hotelId)) > 0;
+
         public async Task<dynamic?> FindAllByFiltersAsync(string? email, string? phone, string? state)
         {
             var query = Context.Admins.AsNoTracking().AsQueryable();

@@ -10,5 +10,7 @@ namespace SweetManagerIotWebService.API.IAM.Domain.Repositories.Users
         Task<IEnumerable<Admin>> FindAllByHotelIdAsync(int hotelId);
 
         Task<int?> FindHotelIdByIdAsync(int id);
+
+        Task<bool> ExecuteUpdateAdminHotelIdAsync(int id, int hotelId);
     }
 }
