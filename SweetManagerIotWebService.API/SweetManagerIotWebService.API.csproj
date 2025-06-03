@@ -35,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commerce\Infrastructure\" />
     <Folder Include="Commerce\Application\" />
     <Folder Include="Commerce\Interfaces\" />
     <Folder Include="Reservations\Application\Internal\OutBoundService\ACL\" />

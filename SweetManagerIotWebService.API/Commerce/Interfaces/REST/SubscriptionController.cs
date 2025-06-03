@@ -52,7 +52,8 @@ public class SubscriptionController(
     {
         var getSubscriptionsByNameQuery = new GetAllSubscriptionsByNameQuery(name);
         var subscriptions = await subscriptionQueryService.Handle(getSubscriptionsByNameQuery);
-        var subscriptionResources = subscriptions.Select(SubscriptionResourceFromEntityAssembler.ToResourceFromEntity);
+        if (subscriptions == null) return NotFound();
+        var subscriptionResources = SubscriptionResourceFromEntityAssembler.ToResourceFromEntity(subscriptions);
         return Ok(subscriptionResources);
     }
     

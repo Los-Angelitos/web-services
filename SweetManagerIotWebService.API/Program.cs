@@ -53,6 +53,7 @@ using SweetManagerIotWebService.API.Commerce.Domain.Repositories;
 using SweetManagerIotWebService.API.Commerce.Domain.Services;
 using SweetManagerIotWebService.API.Commerce.Infrastructure.Persistence.Dapper.Dashboard;
 using SweetManagerIotWebService.API.Commerce.Infrastructure.Persistence.EFC.Repositories;
+using SweetManagerIotWebService.API.Commerce.Infrastructure.Population.Subscriptions;
 using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.CommandServices;
 using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.QueryServices;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Repositories;
@@ -199,6 +200,7 @@ builder.Services.AddScoped<IOwnerQueryService, OwnerQueryService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<RolesInitializer>();
+builder.Services.AddScoped<SubscriptionsInitializer>();
 
 // Reservations bounded context
 builder.Services.AddScoped<IRoomCommandService, RoomCommandService>();
@@ -336,8 +338,10 @@ using (var scope = app.Services.CreateScope())
 using (var scope = app.Services.CreateScope())
 {
     var roleInitializer = scope.ServiceProvider.GetRequiredService<RolesInitializer>();
+    var subscriptionsInitializer = scope.ServiceProvider.GetRequiredService<SubscriptionsInitializer>();
 
     roleInitializer.InitializeAsync().Wait();
+    subscriptionsInitializer.InitializeAsync().Wait();
 }
 #endregion
 
