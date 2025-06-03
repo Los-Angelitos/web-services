@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Mysqlx.Crud;
-using SweetManagerIotWebService.API.Communication.Domain.Model.Aggregates;
+﻿using SweetManagerIotWebService.API.Communication.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.IAM.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Inventory.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Commands;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Entities;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Aggregates;
 
-namespace SweetManagerIotWebService.API;
+namespace SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
 
 public partial class Hotel
 {
@@ -37,6 +34,8 @@ public partial class Hotel
     public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 
     public virtual ICollection<Multimedia> Multimedias { get; set; } = new List<Multimedia>();
+
+    public virtual ICollection<Provider> Providers { get; set; } = new List<Provider>();
 
     public Hotel()
     {
