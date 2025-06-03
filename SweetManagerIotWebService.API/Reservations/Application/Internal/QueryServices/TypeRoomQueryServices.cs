@@ -5,7 +5,7 @@ using SweetManagerIotWebService.API.Reservations.Domain.Services.TypeRoom;
 
 namespace SweetManagerIotWebService.API.Reservations.Application.Internal.QueryServices;
 
-public class TypeRoomQueryServices(ITypeRoomRepository typeRoomRepository): ITypeRoomQueryService
+public class TypeRoomQueryServices(ITypeRoomRepository typeRoomRepository) : ITypeRoomQueryService
 {
     public Task<IEnumerable<TypeRoom>> Handle(GetAllTypeRoomsQuery query)
     {
@@ -16,4 +16,11 @@ public class TypeRoomQueryServices(ITypeRoomRepository typeRoomRepository): ITyp
     {
         return typeRoomRepository.FindByIdAsync(query.Id);
     }
+    
+    public async Task<decimal?> Handle(GetMinimumPriceTypeRoomByHotelId query)
+    {
+        var typeRooms = await typeRoomRepository.FindAllByHotelIdAsync(query.hotelId);
+        return typeRooms.Min(tr => tr.Price);
+    }
+
 }
