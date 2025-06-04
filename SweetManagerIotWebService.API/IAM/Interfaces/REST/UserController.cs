@@ -102,11 +102,11 @@ namespace SweetManagerIotWebService.API.IAM.Interfaces.REST
             {
                 if (hotelId != 0)
                 {
-                    var admin = await adminQueryService.Handle(new GetAllUsersFromOrganizationQuery(hotelId));
+                    var admins = await adminQueryService.Handle(new GetAllUsersFromOrganizationQuery(hotelId));
 
-                    var adminResource = UserResourceFromEntityAssembler.ToResourceFromEntity(admin!);
+                    var adminResources = admins.Select(UserResourceFromEntityAssembler.ToResourceFromEntity);
 
-                    return Ok(adminResource);
+                    return Ok(adminResources);
                 }
                 else
                 {
@@ -158,9 +158,9 @@ namespace SweetManagerIotWebService.API.IAM.Interfaces.REST
             {
                 if (hotelId != 0)
                 {
-                    var guest = await guestQueryService.Handle(new GetAllUsersFromOrganizationQuery(hotelId));
+                    var guests = await guestQueryService.Handle(new GetAllUsersFromOrganizationQuery(hotelId));
 
-                    var guestResource = UserResourceFromEntityAssembler.ToResourceFromEntity(guest!);
+                    var guestResource = guests.Select(UserResourceFromEntityAssembler.ToResourceFromEntity);
 
                     return Ok(guestResource);
                 }
