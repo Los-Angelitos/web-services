@@ -118,7 +118,26 @@ namespace SweetManagerIotWebService.API.Inventory.Interfaces.REST
                 return BadRequest(ex.Message);
             }
         }
-        
+
+        [HttpPut("provider/{id}")]
+        public async Task<IActionResult> AssignProviderToSupply([FromBody] UpdateProviderOnSupplyResource resource, int id)
+        {
+            try
+            {
+                var updateProviderOnSupplyCommand = UpdateProviderOnSupplyCommandFromResourceAssembler.ToCommandFromResource(id, resource);
+
+                var result = await supplyCommandService.Handle(updateProviderOnSupplyCommand);
+
+                if (result)
+                    return Ok();
+                else
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
     
 }
