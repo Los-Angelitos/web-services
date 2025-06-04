@@ -324,7 +324,10 @@ public partial class SweetManagerContext : DbContext
             entity.Property(e => e.Phone)
                 .HasMaxLength(15)
                 .HasColumnName("phone");
-            entity.Property(e => e.Category).HasConversion<string>().HasColumnName("category");
+
+            entity.Property(e => e.Category)
+                .HasConversion<string>()
+                .HasColumnName("category");
 
             entity.HasOne(d => d.Owner).WithMany(p => p.Hotels)
                 .HasForeignKey(d => d.OwnerId)
