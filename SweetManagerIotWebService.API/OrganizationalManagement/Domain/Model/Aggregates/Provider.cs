@@ -24,12 +24,13 @@ public partial class Provider
 
     public Provider() {}
 
-    public Provider(string name, string email, string phone, string state)
+    public Provider(string name, string email, string phone, string state, int hotelId)
     {
         Name = name;
         Email = email;
         Phone = phone;
         State = Enum.TryParse<State>(state, true, out var stateEnum) ? stateEnum : throw new ArgumentException("Invalid state, use 'Active' or 'Inactive'");
+        HotelId = hotelId;
     }
 
     public Provider(CreateProviderCommand command)
@@ -38,6 +39,7 @@ public partial class Provider
         Email = command.Email;
         Phone = command.Phone;
         State = Enum.TryParse<State>(command.State, true, out var stateEnum) ? stateEnum : throw new ArgumentException("Invalid state, use 'Active' or 'Inactive'");
+        HotelId = command.HotelId;
     }
     
     public void UpdateData(UpdateProviderCommand command)

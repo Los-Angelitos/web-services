@@ -8,8 +8,7 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Infrastructure.
 
 public class ProviderRepository(SweetManagerContext context) : BaseRepository<Provider>(context), IProviderRepository
 {
-    public async Task<IEnumerable<Provider>> GetAllProvidersAsync()
-    {
-        return await Context.Set<Provider>().ToListAsync();
-    }
+    public async Task<IEnumerable<Provider>> GetAllProvidersAsync(int hotelId)
+    => await Context.Set<Provider>().Where(p => p.HotelId.Equals(hotelId)).ToListAsync();
+    
 }

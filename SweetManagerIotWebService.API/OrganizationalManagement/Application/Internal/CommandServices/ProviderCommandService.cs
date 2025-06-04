@@ -15,7 +15,6 @@ public class ProviderCommandService(IProviderRepository providerRepository, IUni
         await providerRepository.AddAsync(provider);
         await unitOfWork.CommitAsync();
         return provider;
-        
     }
     
     public async Task<Provider?> Handle(UpdateProviderCommand command)
