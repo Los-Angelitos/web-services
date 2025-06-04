@@ -8,8 +8,6 @@ namespace SweetManagerIotWebService.API.Inventory.Application.Internal.CommandSe
 
 public class SupplyCommandService(ISupplyRepository supplyRepository, IUnitOfWork unitOfWork) : ISupplyCommandService
 {
-    ISupplyRepository _supplyRepository = supplyRepository;
-    IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<bool> Handle(CreateSupplyCommand command)
     {
@@ -26,8 +24,8 @@ public class SupplyCommandService(ISupplyRepository supplyRepository, IUnitOfWor
                 throw new InvalidSupplyStockException("The stock of the supply cannot be negative.");
 
             
-            await _supplyRepository.AddAsync(new (command));
-            await _unitOfWork.CommitAsync();
+            await supplyRepository.AddAsync(new (command));
+            await unitOfWork.CommitAsync();
             return true;
         }
         catch (Exception e)
@@ -41,7 +39,7 @@ public class SupplyCommandService(ISupplyRepository supplyRepository, IUnitOfWor
     {
         try
         {
-            var existingSupply = await _supplyRepository.FindByIdAsync(command.Id);
+            var existingSupply = await supplyRepository.FindByIdAsync(command.Id);
 
             if (existingSupply == null)
                 throw new SupplyNotFoundException($"The supply with ID {command.Id} was not found.");
@@ -57,7 +55,7 @@ public class SupplyCommandService(ISupplyRepository supplyRepository, IUnitOfWor
             
             
             existingSupply.Update(command);
-            await _unitOfWork.CommitAsync();
+            await unitOfWork.CommitAsync();
 
             return true;
         }
@@ -65,5 +63,17 @@ public class SupplyCommandService(ISupplyRepository supplyRepository, IUnitOfWor
         {
             return false;
         }
+    }
+
+    public async Task<bool> Handle(UpdateProviderOnSupplyCommand command)
+    {
+        if (await supplyRepository.FindByIdAsync(command.Id) is null)
+            throw new SupplyNotFoundException("No supply found with the given id");
+
+        var result = await supplyRepository.ExecuteUpdateProviderIdAsync(command.Id, command.ProviderId);
+
+        await unitOfWork.CommitAsync();
+
+        return result;
     }
 }

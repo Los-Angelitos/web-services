@@ -545,6 +545,7 @@ public partial class SweetManagerContext : DbContext
                 .HasMaxLength(200)
                 .HasColumnName("content");
             entity.Property(e => e.Name)
+                .HasConversion<string>()
                 .HasMaxLength(50)
                 .HasColumnName("name");
             entity.Property(e => e.Price)
