@@ -6,4 +6,6 @@ public interface ISupplyCommandService
 {
     Task<bool> Handle(CreateSupplyCommand command);
     Task<bool> Handle(UpdateSupplyCommand command);
+
+    Task<bool> Handle(UpdateProviderOnSupplyCommand command);
 }

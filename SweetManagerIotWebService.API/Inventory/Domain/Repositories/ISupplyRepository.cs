@@ -7,6 +7,7 @@ public interface ISupplyRepository : IBaseRepository<Supply>
 {
     public Task<IEnumerable<Supply>> FindByProviderId(int providerId);
     
-    public Task<IEnumerable<Supply>> FindSuppliesByHotelIdAsync(int hotelId); 
+    public Task<IEnumerable<Supply>> FindSuppliesByHotelIdAsync(int hotelId);
 
+    public Task<bool> ExecuteUpdateProviderIdAsync(int id, int providerId);
 }
