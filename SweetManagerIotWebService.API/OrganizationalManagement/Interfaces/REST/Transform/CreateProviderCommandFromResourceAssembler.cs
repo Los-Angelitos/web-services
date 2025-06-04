@@ -7,6 +7,6 @@ public class CreateProviderCommandFromResourceAssembler
 {
     public static CreateProviderCommand ToCommandFromResource(CreateProviderResource resource)
     {
-        return new CreateProviderCommand(resource.Name, resource.Email, resource.Phone, resource.State);
+        return new CreateProviderCommand(resource.Name, resource.Email, resource.Phone, resource.State, resource.HotelId);
     }
 }

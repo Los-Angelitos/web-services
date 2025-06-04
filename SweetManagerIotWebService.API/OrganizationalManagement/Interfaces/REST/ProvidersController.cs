@@ -58,12 +58,12 @@ public class ProvidersController(IProviderCommandService providerCommandService,
         
     }
     
-    [HttpGet]
-    public async Task<IActionResult> GetAllProviders()
+    [HttpGet("hotel/{hotelId}")]
+    public async Task<IActionResult> GetAllProviders(int hotelId)
     {
         try
         {
-            var getAllProvidersQuery = new GetAllProvidersQuery();
+            var getAllProvidersQuery = new GetAllProvidersQuery(hotelId);
             var providers = await providerQueryService.Handle(getAllProvidersQuery);
             var providerResources = providers.Select(ProviderResourceFromEntityAssembler.ToResourceFromEntity);
             return Ok(providerResources);

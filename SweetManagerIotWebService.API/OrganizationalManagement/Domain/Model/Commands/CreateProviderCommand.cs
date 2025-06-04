@@ -4,5 +4,6 @@ public record CreateProviderCommand(
     string Name,
     string Email,
     string Phone,
-    string State
+    string State,
+    int HotelId
     );

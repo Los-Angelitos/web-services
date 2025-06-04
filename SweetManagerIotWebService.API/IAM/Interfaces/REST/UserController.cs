@@ -248,7 +248,7 @@ namespace SweetManagerIotWebService.API.IAM.Interfaces.REST
             }
         }
 
-        [HttpPut("admins/hotel/{id}")]
+        [HttpPut("admins/{id}/hotel")]
         [Authorize]
         public async Task<IActionResult> AssignAdminToHotel([FromBody] UpdateAdminHotelIdResource resource, int id)
         {

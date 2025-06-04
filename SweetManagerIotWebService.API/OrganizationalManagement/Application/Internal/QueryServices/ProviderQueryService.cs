@@ -14,6 +14,6 @@ public class ProviderQueryService(IProviderRepository providerRepository) : IPro
     
     public async Task<IEnumerable<Provider>> Handle(GetAllProvidersQuery query) 
     {
-        return await providerRepository.GetAllProvidersAsync(); // query.hotelId, it is necessary inventory bc ready for recover the providers_id by hotel_id
+        return await providerRepository.GetAllProvidersAsync(query.hotelId); // query.hotelId, it is necessary inventory bc ready for recover the providers_id by hotel_id
     }
 }
