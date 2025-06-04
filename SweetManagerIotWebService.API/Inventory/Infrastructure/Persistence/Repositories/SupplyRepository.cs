@@ -10,12 +10,12 @@ using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Reposi
 
 namespace SweetManagerIotWebService.API.Inventory.Infrastructure.Persistence.Repositories;
 
-public class SupplyRepository : BaseRepository<Supply>, ISupplyRepository
+public class SupplyRepository(SweetManagerContext context) : BaseRepository<Supply>(context), ISupplyRepository
 {
-    public SupplyRepository(SweetManagerContext context) : base(context)
-    {
-    }
 
+    public async Task<bool> ExecuteUpdateProviderIdAsync(int id, int providerId)
+     => await Context.Set<Supply>().Where(s => s.Id.Equals(id))
+        .ExecuteUpdateAsync(s => s.SetProperty(u => u.ProviderId, providerId)) > 0;
 
     public async Task<IEnumerable<Supply>> FindByProviderId(int providerId)
     {
