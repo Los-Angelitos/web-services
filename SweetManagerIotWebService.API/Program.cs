@@ -71,6 +71,9 @@ using SweetManagerIotWebService.API.Communication.Domain.Services;
 using SweetManagerIotWebService.API.Communication.Infrastructure.Persistence.EFC.Repositories;
 using SweetManagerIotWebService.API.Reservations.Domain.Services.SmokeSensor;
 using SweetManagerIotWebService.API.Reservations.Domain.Services.Thermostat;
+using SweetManagerIotWebService.API.Communication.Infrastructure.Mails.SMTP.Configuration;
+using SweetManagerIotWebService.API.Communication.Application.Internal.OutboundServices;
+using SweetManagerIotWebService.API.Communication.Infrastructure.Mails.SMTP.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -85,6 +88,14 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+#region SMTP_CONFIG
+
+var mailSettings = builder.Configuration.GetSection("MailSettings");
+
+builder.Services.Configure<MailSettings>(mailSettings);
+
+#endregion
 
 #region Database Configuration
 // Add Database Connection
@@ -259,7 +270,7 @@ builder.Services.AddScoped<ISupplyRequestQueryService, SupplyRequestQueryService
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationCommandService, NotificationCommandService>();
 builder.Services.AddScoped<INotificationQueryService, NotificationQueryService>();
-
+builder.Services.AddTransient<IMailService, MailService>();
 
 // Organizational Management Bounded context
 builder.Services.AddScoped<IHotelRepository, HotelRepository>();
