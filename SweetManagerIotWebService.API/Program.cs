@@ -76,6 +76,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Configuration.AddEnvironmentVariables().AddUserSecrets<Program>();
+
 builder.Services.AddControllers(options => options.Conventions.Add(new KebabCaseRouteNamingConvention()));
 
 // Configure Lowercase URLs
@@ -86,7 +88,7 @@ builder.Services.AddSwaggerGen();
 
 #region Database Configuration
 // Add Database Connection
-var connectionString = builder.Configuration.GetConnectionString("SweetManager");
+var connectionString = builder.Configuration.GetConnectionString("DbConnection");
 
 builder.Services.AddTransient<IDbConnection>(db => new MySqlConnection(connectionString));
 
