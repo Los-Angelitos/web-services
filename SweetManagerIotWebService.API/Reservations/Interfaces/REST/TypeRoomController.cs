@@ -1,5 +1,6 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
+using SweetManagerIotWebService.API.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Queries;
 using SweetManagerIotWebService.API.Reservations.Domain.Services.TypeRoom;
 using SweetManagerIotWebService.API.Reservations.Interfaces.REST.Resources.TypeRoom;
@@ -10,6 +11,7 @@ namespace SweetManagerIotWebService.API.Reservations.Interfaces.REST;
 
 [Route("api/v1/[controller]")]
 [ApiController]
+[Authorize]
 [Produces(MediaTypeNames.Application.Json)]
 public class TypeRoomController(ITypeRoomQueryService typeRoomQueryService, ITypeRoomCommandService typeRoomCommandService) : ControllerBase
 {
@@ -63,6 +65,7 @@ public class TypeRoomController(ITypeRoomQueryService typeRoomQueryService, ITyp
     }
     
     [HttpGet("get-minimum-price-type-room-by-hotel-id")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetMinimumPriceTypeRoomByHotelId([FromQuery] int hotelId)
     {
         var minimumPrice = await typeRoomQueryService.Handle(new GetMinimumPriceTypeRoomByHotelId(hotelId));
