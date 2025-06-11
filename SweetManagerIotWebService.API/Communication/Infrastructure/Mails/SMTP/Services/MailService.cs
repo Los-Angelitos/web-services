@@ -34,7 +34,7 @@ namespace SweetManagerIotWebService.API.Communication.Infrastructure.Mails.SMTP.
                     EnableSsl = true
                 };
 
-                smtpClient.SendAsync(message, token);
+                smtpClient.Send(message);
             }
             catch(Exception ex)
             {
