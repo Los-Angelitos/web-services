@@ -71,6 +71,15 @@ using SweetManagerIotWebService.API.Communication.Domain.Services;
 using SweetManagerIotWebService.API.Communication.Infrastructure.Persistence.EFC.Repositories;
 using SweetManagerIotWebService.API.Reservations.Domain.Services.SmokeSensor;
 using SweetManagerIotWebService.API.Reservations.Domain.Services.Thermostat;
+using SweetManagerIotWebService.API.Communication.Infrastructure.Mails.SMTP.Configuration;
+using SweetManagerIotWebService.API.Communication.Application.Internal.OutboundServices;
+using SweetManagerIotWebService.API.Communication.Infrastructure.Mails.SMTP.Services;
+using SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.ACL;
+using SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.ACL.Services;
+using SweetManagerIotWebService.API.IAM.Interfaces.ACL;
+using SweetManagerIotWebService.API.IAM.Interfaces.ACL.Services;
+using SweetManagerIotWebService.API.Communication.Application.Internal.OutboundServices.ACL;
+using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.OutboundServices.ACL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -85,6 +94,14 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+#region SMTP_CONFIG
+
+var mailSettings = builder.Configuration.GetSection("MailSettings");
+
+builder.Services.Configure<MailSettings>(mailSettings);
+
+#endregion
 
 #region Database Configuration
 // Add Database Connection
@@ -201,6 +218,7 @@ builder.Services.AddScoped<IGuestQueryService, GuestQueryService>();
 builder.Services.AddScoped<IOwnerQueryService, OwnerQueryService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
 builder.Services.AddScoped<RolesInitializer>();
 builder.Services.AddScoped<SubscriptionsInitializer>();
 
@@ -259,7 +277,9 @@ builder.Services.AddScoped<ISupplyRequestQueryService, SupplyRequestQueryService
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationCommandService, NotificationCommandService>();
 builder.Services.AddScoped<INotificationQueryService, NotificationQueryService>();
-
+builder.Services.AddScoped<ExternalOrganizationManagementService>();
+builder.Services.AddScoped<ExternalIAMService>();
+builder.Services.AddTransient<IMailService, MailService>();
 
 // Organizational Management Bounded context
 builder.Services.AddScoped<IHotelRepository, HotelRepository>();
@@ -271,6 +291,8 @@ builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 builder.Services.AddScoped<IMultimediaRepository, MultimediaRepository>();
 builder.Services.AddScoped<IMultimediaCommandService, MultimediaCommandService>();
 builder.Services.AddScoped<IMultimediaQueryService, MultimediaQueryService>();
+builder.Services.AddScoped<IOrganizationManagementContextFacade, OrganizationManagementContextFacade>();
+builder.Services.AddScoped<ExternalIamService>();
 
 // Shared Bounded context
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

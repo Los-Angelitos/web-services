@@ -6,4 +6,7 @@ namespace SweetManagerIotWebService.API.Communication.Domain.Services;
 public interface INotificationCommandService
 {
     Task<Notification?> Handle(CreateNotificationCommand command);
+
+    Task<bool> Handle(CreateAdminRequestToOrganizationCommand command);
+
 }

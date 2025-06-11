@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Reservations\Interfaces\ACL\**" />
+    <Content Remove="Reservations\Interfaces\ACL\**" />
+    <EmbeddedResource Remove="Reservations\Interfaces\ACL\**" />
+    <None Remove="Reservations\Interfaces\ACL\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.66" />
     <PackageReference Include="EntityFrameworkCore.CreatedUpdatedDate" Version="8.0.0" />
     <PackageReference Include="Humanizer.Core" Version="2.14.1" />
@@ -39,7 +46,6 @@
     <Folder Include="Commerce\Application\" />
     <Folder Include="Commerce\Interfaces\" />
     <Folder Include="Reservations\Application\Internal\OutBoundService\ACL\" />
-    <Folder Include="Reservations\Interfaces\ACL\" />
     <Folder Include="IAM\Application\Internal\OutboundServices\ACL\" />
   </ItemGroup>
 </Project>
