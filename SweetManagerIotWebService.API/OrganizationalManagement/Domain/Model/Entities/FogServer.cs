@@ -28,6 +28,7 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.En
         {
             IpAddress = command.IpAddress;
             SubnetMask = command.SubnetMask;
+            HotelId = command.HotelId;
         }
 
         public void Update(UpdateFogServerCommand command)
