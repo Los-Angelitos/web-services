@@ -291,6 +291,9 @@ builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 builder.Services.AddScoped<IMultimediaRepository, MultimediaRepository>();
 builder.Services.AddScoped<IMultimediaCommandService, MultimediaCommandService>();
 builder.Services.AddScoped<IMultimediaQueryService, MultimediaQueryService>();
+builder.Services.AddScoped<IFogServerRepository, FogServerRepository>();
+builder.Services.AddScoped<IFogServerCommandService, FogServerCommandService>();
+builder.Services.AddScoped<IFogServerQueryService, FogServerQueryService>();
 builder.Services.AddScoped<IOrganizationManagementContextFacade, OrganizationManagementContextFacade>();
 builder.Services.AddScoped<ExternalIamService>();
 
