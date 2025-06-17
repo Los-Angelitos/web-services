@@ -229,6 +229,24 @@ public partial class SweetManagerContext : DbContext
                 .HasConstraintName("contract_owners_ibfk_2");
         });
 
+        modelBuilder.Entity<FogServer>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("fog_servers");
+
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
+
+            entity.HasIndex(e => e.HotelId, "hotel_id");
+
+            entity.Property(e => e.IpAddress).HasMaxLength(150).HasColumnName("ip_address");
+
+            entity.Property(e => e.SubnetMask).HasMaxLength(150).HasColumnName("subnet_mask");
+
+            entity.HasOne(e => e.Hotel).WithOne(h => h.FogServer)
+                .HasForeignKey<FogServer>(d => d.HotelId).HasConstraintName("fog_servers_ibfk_1");
+        });
+
         modelBuilder.Entity<Guest>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
