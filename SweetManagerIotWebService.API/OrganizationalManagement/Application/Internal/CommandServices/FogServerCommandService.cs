@@ -24,8 +24,7 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Application.Int
 
         public async Task<FogServer?> Handle(UpdateFogServerCommand command)
         {
-            if (command.Id.Equals(0) ||string.IsNullOrEmpty(command.IpAddress) || string.IsNullOrEmpty(command.SubnetMask) || 
-                command.HotelId.Equals(0))
+            if (command.Id.Equals(0) ||string.IsNullOrEmpty(command.IpAddress) || string.IsNullOrEmpty(command.SubnetMask))
                 throw new ArgumentException("All the fields are required.");
 
             var entity = await fogServerRepository.FindByIdAsync(command.Id) ?? throw new ArgumentException("No one fog server exist with the given id");
