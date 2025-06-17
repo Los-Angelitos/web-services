@@ -34,6 +34,28 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST
             }
         }
 
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdateFogServer(int id, [FromBody] UpdateFogServerResource resource)
+        {
+            try
+            {
+                var fogServerCommand = UpdateFogServerCommandFromResourceAssembler.ToCommandFromResource(id, resource);
+
+                var fogServer = await fogServerCommandService.Handle(fogServerCommand);
+
+                if (fogServer is null)
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+
+                var fogServerResource = FogServerResourceFromEntityAssembler.ToResourceFromEntity(fogServer);
+
+                return Ok(fogServerResource);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetFogServerByHotelId([FromQuery] int hotelId)
         {

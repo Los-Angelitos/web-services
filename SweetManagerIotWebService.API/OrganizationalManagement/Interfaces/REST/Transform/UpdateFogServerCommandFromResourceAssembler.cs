@@ -7,7 +7,7 @@ namespace SweetManagerIotWebService.API.OrganizationalManagement.Interfaces.REST
     {
         public static UpdateFogServerCommand ToCommandFromResource(int Id, UpdateFogServerResource resource)
         {
-            return new UpdateFogServerCommand(Id, resource.IpAddress, resource.SubnetMask, resource.HotelId);
+            return new UpdateFogServerCommand(Id, resource.IpAddress, resource.SubnetMask);
         }
     }
 }
