@@ -40,6 +40,8 @@ public partial class Hotel
 
     public virtual ICollection<Provider> Providers { get; set; } = new List<Provider>();
 
+    public virtual FogServer FogServer { get; set; } = null!;
+
     public Hotel()
     {
         // asd
