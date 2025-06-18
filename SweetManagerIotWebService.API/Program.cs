@@ -273,6 +273,11 @@ builder.Services.AddScoped<ISupplyQueryService, SupplyQueryService>();
 builder.Services.AddScoped<ISupplyRequestRepository, SupplyRequestRepository>();
 builder.Services.AddScoped<ISupplyRequestCommandService, SupplyRequestCommandService>();
 builder.Services.AddScoped<ISupplyRequestQueryService, SupplyRequestQueryService>();
+
+builder.Services.AddScoped<IRfidCardRepository, RfidCardRepository>();
+builder.Services.AddScoped<IRfidCardCommandService, RfidCardCommandService>();
+builder.Services.AddScoped<IRfidCardQueryService, RfidCardQueryService>();
+
 // Communication Bounded context
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationCommandService, NotificationCommandService>();
