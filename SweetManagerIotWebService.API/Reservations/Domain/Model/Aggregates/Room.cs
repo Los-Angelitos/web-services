@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using SweetManagerIotWebService.API.Inventory.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.OrganizationalManagement.Domain.Model.Aggregates;
 using SweetManagerIotWebService.API.Reservations.Domain.Commands.Room;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Commands.Room;
@@ -19,7 +20,8 @@ public partial class Room
     public virtual ICollection<Thermostat> Thermostats { get; set; } = new List<Thermostat>();
     
     public virtual ICollection<SmokeSensor> SmokeSensors { get; set; } = new List<SmokeSensor>();
-
+    
+    public virtual ICollection<RfidCard> RfidCards { get; set; } = new List<RfidCard>();
 
     public virtual Hotel? Hotel { get; set; }
 
