@@ -6,4 +6,5 @@ namespace SweetManagerIotWebService.API.Inventory.Domain.Services;
 public interface IRfidCardQueryService
 {
     Task<IEnumerable<RfidCard>> Handle(GetAllRfidCardsQuery query);
+    Task<RfidCard?> Handle(GetRfidCardByIdQuery query);
 }
