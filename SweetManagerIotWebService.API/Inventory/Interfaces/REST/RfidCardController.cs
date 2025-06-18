@@ -43,4 +43,13 @@ public class RfidCardController(
         var rfidCardResource = RfidCardResourceFromEntityAssembler.ToResourceFromEntity(rfidCard);
         return Ok(rfidCardResource);
     }
+    
+    [HttpGet("hotel/{hotelId:int}")]
+    public async Task<IActionResult> GetRfidCardsByHotelId(int hotelId)
+    {
+        var getRfidCardsByHotelIdQuery = new GetAllRfidCardsByHotelIdQuery(hotelId);
+        var rfidCards = await rfidCardQueryService.Handle(getRfidCardsByHotelIdQuery);
+        var rfidCardResources = rfidCards.Select(RfidCardResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(rfidCardResources);
+    }
 }

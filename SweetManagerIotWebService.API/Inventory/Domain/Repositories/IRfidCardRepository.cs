@@ -5,5 +5,5 @@ namespace SweetManagerIotWebService.API.Inventory.Domain.Repositories;
 
 public interface IRfidCardRepository: IBaseRepository<RfidCard>
 {
-    
+    Task<IEnumerable<RfidCard>> FindByHotelIdAsync(int hotelId);
 }

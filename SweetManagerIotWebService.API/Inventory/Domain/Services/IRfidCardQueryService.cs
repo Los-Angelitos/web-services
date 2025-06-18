@@ -7,4 +7,5 @@ public interface IRfidCardQueryService
 {
     Task<IEnumerable<RfidCard>> Handle(GetAllRfidCardsQuery query);
     Task<RfidCard?> Handle(GetRfidCardByIdQuery query);
+    Task<IEnumerable<RfidCard>> Handle(GetAllRfidCardsByHotelIdQuery query);
 }
