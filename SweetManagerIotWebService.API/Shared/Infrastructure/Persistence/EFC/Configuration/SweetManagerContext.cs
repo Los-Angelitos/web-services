@@ -80,6 +80,8 @@ public partial class SweetManagerContext : DbContext
     public virtual DbSet<SmokeSensor> SmokeSensors { get; set; }
 
     public virtual DbSet<Multimedia> Multimedias { get; set; }
+    
+    public virtual DbSet<RfidCard> RfidCards { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -694,6 +696,21 @@ public partial class SweetManagerContext : DbContext
             entity.HasOne(d => d.Room).WithMany(p => p.SmokeSensors)
                 .HasForeignKey(d => d.RoomId)
                 .HasConstraintName("smoke_sensors_ibfk_1");
+        });
+        
+        modelBuilder.Entity<RfidCard>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("rfid_cards");
+            entity.HasIndex(t => t.RoomId, "room_id");
+
+            entity.Property(e => e.Id).HasColumnName("id").ValueGeneratedOnAdd();
+            entity.Property(e => e.RoomId).HasColumnName("room_id");
+
+            entity.HasOne(d => d.Room).WithMany(p => p.RfidCards)
+                .HasForeignKey(d => d.RoomId)
+                .HasConstraintName("rfid_cards_ibfk_1");
         });
 
         modelBuilder.Entity<TypeRoom>(entity =>
