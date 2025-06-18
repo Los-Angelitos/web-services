@@ -16,4 +16,9 @@ public class RfidCardQueryService(IRfidCardRepository rfidCardRepository) : IRfi
     {
         return await rfidCardRepository.FindByIdAsync(query.Id);
     }
+    
+    public async Task<IEnumerable<RfidCard>> Handle(GetAllRfidCardsByHotelIdQuery query)
+    {
+        return await rfidCardRepository.FindByHotelIdAsync(query.HotelId);
+    }
 }
