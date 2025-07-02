@@ -5,16 +5,20 @@ using SweetManagerIotWebService.API.Shared.Domain.Repositories;
 
 namespace SweetManagerIotWebService.API.Reservations.Application.Internal.CommandServices;
 
-public class BookingCommandService(IBookingRepository bookingRepository, IUnitOfWork unitOfWork) : IBookingCommandServices
+public class BookingCommandService(IBookingRepository bookingRepository, IUnitOfWork unitOfWork,
+        IRoomRepository roomRepository) : IBookingCommandServices
 {
-    IBookingRepository _bookingRepository = bookingRepository;
-    IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<bool> Handle(CreateBookingCommand command)
     {
         var booking = new Booking(command);
-        await _bookingRepository.AddAsync(booking);
-        await _unitOfWork.CommitAsync();
+        
+        await bookingRepository.AddAsync(booking);
+
+        await roomRepository.UpdateRoomStateAsync(command.RoomId, "INACTIVE");
+        
+        await unitOfWork.CommitAsync();
+        
         return true;
     }
     
@@ -22,7 +26,7 @@ public class BookingCommandService(IBookingRepository bookingRepository, IUnitOf
     {
         try
         {
-            await _bookingRepository.UpdateBookingStateAsync(command.Id, command.State);
+            await bookingRepository.UpdateBookingStateAsync(command.Id, command.State);
             return true; 
         }
         catch (Exception e)
@@ -35,7 +39,7 @@ public class BookingCommandService(IBookingRepository bookingRepository, IUnitOf
     {
         try
         {
-            await _bookingRepository.UpdateBookingEndDateAsync(command.Id, command.EndDate);
+            await bookingRepository.UpdateBookingEndDateAsync(command.Id, command.EndDate);
             return true; 
         }
         catch (Exception e)

@@ -17,7 +17,7 @@ public class RoomCommandService(IRoomRepository roomRepository, IUnitOfWork unit
      {
          if (command.TypeRoomId is null)
              throw new ArgumentException("TypeRoomId is required.");
-         if (command.HotelId is null)
+         if (command.HotelId is null) 
              throw new ArgumentException("HotelId is required.");
          if (string.IsNullOrWhiteSpace(command.State))
              throw new ArgumentException("State is required.");
