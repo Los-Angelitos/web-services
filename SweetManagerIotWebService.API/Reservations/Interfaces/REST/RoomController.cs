@@ -1,6 +1,6 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
-using SweetManagerIotWebService.API.Inventory.Interfaces.REST.Resources;
+using SweetManagerIotWebService.API.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using SweetManagerIotWebService.API.Reservations.Domain.Model.Queries;
 using SweetManagerIotWebService.API.Reservations.Domain.Services.Room;
 using SweetManagerIotWebService.API.Reservations.Interfaces.REST.Resources.Room;
@@ -10,6 +10,7 @@ namespace SweetManagerIotWebService.API.Reservations.Interfaces.REST;
 
 [Route("api/v1/[controller]")]
 [ApiController]
+[Authorize]
 [Produces(MediaTypeNames.Application.Json)]
 public class RoomController(IRoomCommandService roomCommandService, IRoomQueryService roomQueryService) : ControllerBase
 {
@@ -101,7 +102,7 @@ public class RoomController(IRoomCommandService roomCommandService, IRoomQuerySe
         var rooms = await roomQueryService.Handle(new GetAllRoomsQuery(hotelId));
 
         var roomResource = rooms.Select(RoomResourceFromEntityAssembler.ToResourceFromEntity);
-        return Ok(roomResource);
+        return Ok(roomResource); 
     }
     
    [HttpGet("get-room-by-type-room")]
@@ -110,7 +111,7 @@ public class RoomController(IRoomCommandService roomCommandService, IRoomQuerySe
         var rooms = await roomQueryService.Handle(new GetRoomsByTypeRoomIdQuery(typeRoomId));
 
         var roomResource = rooms.Select(RoomResourceFromEntityAssembler.ToResourceFromEntity);
-        return Ok(roomResource);
+        return Ok(roomResource); 
     }
     
     [HttpGet("get-room-by-booking-availability")]

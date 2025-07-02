@@ -2,7 +2,7 @@
 
 public record CreateBookingCommand(
     int? PaymentCustomerId,
-    int? RoomId,
+    int RoomId,
     string? Description,
     DateTime? StartDate,
     DateTime? FinalDate,
