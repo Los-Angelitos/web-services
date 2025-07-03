@@ -80,6 +80,7 @@ using SweetManagerIotWebService.API.IAM.Interfaces.ACL;
 using SweetManagerIotWebService.API.IAM.Interfaces.ACL.Services;
 using SweetManagerIotWebService.API.Communication.Application.Internal.OutboundServices.ACL;
 using SweetManagerIotWebService.API.OrganizationalManagement.Application.Internal.OutboundServices.ACL;
+using SweetManagerIotWebService.API.Reservations.Application.Internal.OutboundServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -235,7 +236,7 @@ builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IBookingCommandServices, BookingCommandService>();
 builder.Services.AddScoped<IBookingQueryServices, BookingQueryService>();
 
-builder.Services.AddScoped<IThermostatRepositoy, ThermostatRepository>();
+builder.Services.AddScoped<IThermostatRepository, ThermostatRepository>();
 builder.Services.AddScoped<IThermostatCommandService, ThermostatCommandService>();
 builder.Services.AddScoped<IThermostatQueryServices, ThermostatQueryService>();
 
@@ -243,7 +244,7 @@ builder.Services.AddScoped<ISmokeSensorRepositoy, SmokeSensorRepository>();
 builder.Services.AddScoped<ISmokeSensorCommandService, SmokeSensorCommandService>();
 builder.Services.AddScoped<ISmokeSensorQueryServices, SmokeSensorQueryService>();
 
-
+builder.Services.AddScoped<SweetManagerIotWebService.API.Reservations.Application.Internal.OutboundServices.ACL.ExternalIAMService>();
 
 // Commerce Bounded context
 builder.Services.AddScoped<IPaymentCustomerRepository, PaymentCustomerRepository>();
@@ -283,7 +284,7 @@ builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationCommandService, NotificationCommandService>();
 builder.Services.AddScoped<INotificationQueryService, NotificationQueryService>();
 builder.Services.AddScoped<ExternalOrganizationManagementService>();
-builder.Services.AddScoped<ExternalIAMService>();
+builder.Services.AddScoped<SweetManagerIotWebService.API.Communication.Application.Internal.OutboundServices.ACL.ExternalIAMService>();
 builder.Services.AddTransient<IMailService, MailService>();
 
 // Organizational Management Bounded context
