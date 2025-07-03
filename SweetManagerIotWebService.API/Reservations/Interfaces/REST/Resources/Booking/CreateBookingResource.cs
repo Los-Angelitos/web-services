@@ -1,7 +1,7 @@
 ﻿namespace SweetManagerIotWebService.API.Reservations.Interfaces.REST.Resources.Booking;
 
 public record CreateBookingResource(
-    int? PaymentCustomerId,
+    int PaymentCustomerId,
     int RoomId,
     string? Description,
     DateTime? StartDate,
@@ -10,4 +10,4 @@ public record CreateBookingResource(
     int? NightCount,
     decimal? Amount,
     string? State,
-    int? PreferenceId);
+    int PreferenceId);

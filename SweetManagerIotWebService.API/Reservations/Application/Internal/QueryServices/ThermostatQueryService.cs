@@ -7,9 +7,9 @@ namespace SweetManagerIotWebService.API.Reservations.Application.Internal.QueryS
 
 public class ThermostatQueryService : IThermostatQueryServices
 {
-    private readonly IThermostatRepositoy _thermostatRepositoy;
+    private readonly IThermostatRepository _thermostatRepositoy;
 
-    public ThermostatQueryService(IThermostatRepositoy thermostatRepositoy)
+    public ThermostatQueryService(IThermostatRepository thermostatRepositoy)
     {
         _thermostatRepositoy = thermostatRepositoy;
     }
