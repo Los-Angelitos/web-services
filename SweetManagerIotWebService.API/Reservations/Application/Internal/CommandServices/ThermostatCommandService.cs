@@ -6,10 +6,10 @@ using SweetManagerIotWebService.API.Shared.Domain.Repositories;
 
 namespace SweetManagerIotWebService.API.Reservations.Application.Internal.CommandServices;
 
-public class ThermostatCommandService(IThermostatRepositoy thermostatRepositoy, IUnitOfWork unitOfWork) : IThermostatCommandService
+public class ThermostatCommandService(IThermostatRepository thermostatRepositoy, IUnitOfWork unitOfWork) : IThermostatCommandService
 {
     
-    IThermostatRepositoy _thermostatRepositoy = thermostatRepositoy;
+    IThermostatRepository _thermostatRepositoy = thermostatRepositoy;
     IUnitOfWork _unitOfWork = unitOfWork;
     
     public async Task<bool> Handle(CreateThermostatCommand command)
