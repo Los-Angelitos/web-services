@@ -3,7 +3,7 @@ using SweetManagerIotWebService.API.Shared.Domain.Repositories;
 
 namespace SweetManagerIotWebService.API.Reservations.Domain.Repositories;
 
-public interface IThermostatRepositoy : IBaseRepository<Thermostat>
+public interface IThermostatRepository : IBaseRepository<Thermostat>
 {
     Task<IEnumerable<Thermostat>> FindByRoomIdAsync(int roomId);
     

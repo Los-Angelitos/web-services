@@ -6,7 +6,7 @@ using SweetManagerIotWebService.API.Shared.Infrastructure.Persistence.EFC.Reposi
 
 namespace SweetManagerIotWebService.API.Reservations.Infrastructure.Persistence.EFC.Repositories;
 
-public class ThermostatRepository(SweetManagerContext context) : BaseRepository<Thermostat>(context), IThermostatRepositoy
+public class ThermostatRepository(SweetManagerContext context) : BaseRepository<Thermostat>(context), IThermostatRepository
 {
     public async Task<IEnumerable<Thermostat>> FindByRoomIdAsync(int roomId)
     {
