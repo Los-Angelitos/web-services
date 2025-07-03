@@ -1,7 +1,7 @@
 ﻿namespace SweetManagerIotWebService.API.Reservations.Domain.Model.Commands.Booking;
 
 public record CreateBookingCommand(
-    int? PaymentCustomerId,
+    int PaymentCustomerId,
     int RoomId,
     string? Description,
     DateTime? StartDate,
@@ -10,4 +10,4 @@ public record CreateBookingCommand(
     int? NightCount,
     decimal? Amount,
     string? State,
-    int? PreferenceId);
+    int PreferenceId);
