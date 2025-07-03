@@ -11,7 +11,7 @@ public partial class GuestPreference
 
     public int? GuestId { get; set; }
 
-    public int? Temperature { get; set; }
+    public int Temperature { get; set; }
 
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 
